@@ -9,6 +9,9 @@ app.use(cookieParser())
 
 app.use(express.json());
 
+
+
+
 require("./config/database").connect();
 
 //route import and mount
