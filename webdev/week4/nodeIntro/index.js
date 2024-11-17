@@ -19,6 +19,7 @@ app.get("/multiply", function(req, res) {
     })
 });
 
+
 app.get("/divide", function(req, res) {
     const a = req.query.a;
     const b = req.query.b;
@@ -28,6 +29,7 @@ app.get("/divide", function(req, res) {
 
 });
 
+
 app.get("/subtract", function(req, res) {
     const a = parseInt(req.query.a);
     const b = parseInt(req.query.b);
@@ -35,5 +37,6 @@ app.get("/subtract", function(req, res) {
         ans: a - b
     })
 });
+
 
 app.listen(3000);
