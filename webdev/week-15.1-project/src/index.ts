@@ -1,6 +1,6 @@
 import express from "express"
 import jwt from "jsonwebtoken";
-import { contentModel, UserModel } from "./db";
+import { contentModel, linkModel, UserModel } from "./db";
 import { JWT_PASS } from "./confg";
 import { userMiddleware } from "./middleware";
 
@@ -98,6 +98,21 @@ app.delete("/api/v1/content",userMiddleware, async (req, res) => {
         res.json({
             message:"Invalid server error"
         })
+    }
+})
+
+app.post("api/v1/brain/share",userMiddleware, async (req, res) => {
+    try{
+        const {share} = req.body;
+        if(share){
+            linkModel.create({
+                //@ts-ignore
+                userId:req.userId,
+                
+            })
+        }
+    }catch(err){
+
     }
 })
 
