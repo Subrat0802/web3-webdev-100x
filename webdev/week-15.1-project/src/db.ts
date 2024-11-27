@@ -1,6 +1,6 @@
 import mongoose, {model, Schema} from "mongoose"
 
-mongoose.connect("mongodb+srv://piyushsubrat8:tS3JGr5R50OYSLh0@cluster0.talyj.mongodb.net/ts-app")
+mongoose.connect("")
 
 
 const userSchema = new Schema({
