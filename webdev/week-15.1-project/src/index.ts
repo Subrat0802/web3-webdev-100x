@@ -3,9 +3,12 @@ import jwt from "jsonwebtoken";
 import { contentModel, linkModel, UserModel } from "./db";
 import { JWT_PASS } from "./confg";
 import { userMiddleware } from "./middleware";
+import { random } from "./utils";
+import cors from "cors"
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.post("/api/v1/signup", async (req, res) => {
     try{
@@ -47,17 +50,20 @@ app.post("/api/v1/signin",async (req, res) => {
 
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     try{
-        const {link, type} = req.body;
-        contentModel.create({
+        const {link, type, title} = req.body;
+       
+        const resposne = await contentModel.create({
             type,
             link,
+            title,
             //@ts-ignore
             userId:req.userId,
             tags:[]
         })
     
         res.json({
-            message:"Content added"
+            message:"Content added",
+            // data:resposne
         })
     }catch(err){
         res.json({
@@ -101,24 +107,85 @@ app.delete("/api/v1/content",userMiddleware, async (req, res) => {
     }
 })
 
-app.post("api/v1/brain/share",userMiddleware, async (req, res) => {
+app.post("/api/v1/brain/share",userMiddleware, async (req, res) => {
     try{
         const {share} = req.body;
+        const hash = random(10);
         if(share){
-            linkModel.create({
+
+            const existingLink = await linkModel.findOne({
+                //@ts-ignore
+                userId:req.userId
+            })
+            if(existingLink){
+                res.json({
+                    hash:existingLink
+                })
+                return;
+            }
+            
+            await linkModel.create({
                 //@ts-ignore
                 userId:req.userId,
-                
+                hash:hash
             })
+        }else{
+            await linkModel.deleteOne({
+                //@ts-ignore
+                userId:req.userid
+            })
+            res.json({
+                message:"Remove link"
+            })
+            
         }
+        res.json({
+            message:"Updated sharable link",
+            link:"http://localhost:3000/api/v1/brain/" + hash
+        })
+    }catch(err){
+        res.json({
+            message:"Server error"
+        })
+    }
+})
+
+app.get("/api/v1/brain/:sharLink",userMiddleware, async (req, res) => {
+    try{
+        const hash = req.params.sharLink;
+        const link = await linkModel.findOne({
+            hash: hash
+        })
+        if(!link){
+            res.status(411).json({
+                mesage:"Sorry incorrect input"
+            })
+            return;
+        }
+
+        const content = await contentModel.find({
+            userId: link.userId
+        })
+        const user = await UserModel.findOne({
+            _id:link.userId
+        })
+        if(!user){
+            res.status(411).json({
+                message:"user not found, error should idelly not happen"
+            })
+            return;
+        }
+        res.json({
+            username:user.username,
+            content:content
+        })
     }catch(err){
 
     }
 })
-
-app.get("api/v1/brain/:sharLink", (req, res) => {
-    
-})
 const PORT = 3000;
 app.listen(PORT);
 console.log("app running at ", PORT)
+
+
+//http://localhost:3000/api/v1/brain/g5px3nejbl
