@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000
 
 app.use("/api/v1", router)
 
-mongoose.connect("mongodb+srv://piyushsubrat8:tS3JGr5R50OYSLh0@cluster0.talyj.mongodb.net/project-brainly")
+mongoose.connect("mongodb+srv:")
 
 app.listen(PORT, () => {
     console.log(`App is running at port number ${PORT}`);
