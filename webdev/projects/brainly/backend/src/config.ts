@@ -1,0 +1,1 @@
+export const jWT_PASS = "subrat08"
