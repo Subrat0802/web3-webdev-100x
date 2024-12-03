@@ -20,6 +20,7 @@ export const userMiddleware = (req:Request, res:Response, next:NextFunction) => 
         else{
             res.json({
                 message:"You're not logged in"
+                
             })
         }
     }catch(err){
