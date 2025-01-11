@@ -23,7 +23,7 @@ import { SignMessage } from "./SignMessage";
 function App() {
 
   return (
-    <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/FYI2hB5hlSK-b-p1prYhBHuZm_k4S6WG"}>
+    <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/6CXNCyzsZ3xwqqK6Z1Pxot152urqG-bs"}>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider >
           <WalletMultiButton />

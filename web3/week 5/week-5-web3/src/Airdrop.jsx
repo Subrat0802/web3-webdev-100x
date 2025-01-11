@@ -6,14 +6,13 @@ import React from 'react'
 const Airdrop = () => {
 
     const wallet = useWallet();
-    // alert(wallet.publicKey.toString());
+
     const {connection} = useConnection();
 
     const sendAirDropToUser = async () => {
         try{
             const amount = document.getElementById("publickKey").value;
             await connection.requestAirdrop(wallet.publicKey, amount*LAMPORTS_PER_SOL)
-
             alert("airdropped sol");
         }catch(err){
             alert("Not sended");
