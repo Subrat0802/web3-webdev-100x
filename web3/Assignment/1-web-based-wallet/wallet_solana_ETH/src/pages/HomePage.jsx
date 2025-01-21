@@ -4,13 +4,14 @@ import { toast } from 'sonner';
 
 const HomePage = () => {
     const naviagte = useNavigate();
+    
     const generateSolanaWallet = () => {
-        naviagte("/SOL-wallet")
-        toast.success("Creating Solana Wallet")
+        naviagte("/wallet/Solana")
+        toast.success("Solana Wallet selected. Please generate a wallet to continue.")
     }
     const generateEthereumWallet = () => {
-        naviagte("/ETH-wallet")
-        toast.success("Creating Ethereum Wallet")
+        naviagte("/wallet/Ethereum")
+        toast.success("Ethereum Wallet selected. Please generate a wallet to continue.")
     }
 
   return (

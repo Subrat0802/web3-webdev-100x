@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
         element:<HomePage />
       },
       {
-        path:"/SOL-wallet",
+        path:"/wallet/:id",
         element:<SolanaWallet />
       },
       {
