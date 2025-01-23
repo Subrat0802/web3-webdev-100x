@@ -5,12 +5,14 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
         maxLength:100,
-        trim:true
+        trim:true,
+        
     },
     email:{
         type:String,
         required:true,
-        trim:true
+        trim:true,
+        unique:true
     },
     password:{
         type:String,
@@ -31,3 +33,5 @@ const userSchema = new mongoose.Schema({
         default:Date.now()
     }
 })
+
+module.exports = new mongoose.model("User", userSchema)

@@ -21,7 +21,7 @@ exports.createtodo = async (req, res) => {
 exports.getTodo = async (req, res) => {
   try {
     const response = await Todo.find({});
-    console.log(response);
+  
     res.json({
       data: response,
       success: true,
