@@ -20,7 +20,7 @@ import { SignMessage } from './SignMessage';
 function App() {
 
   return (
-    <ConnectionProvider endpoint={"https://solana-devnet.g.alchemy.com/v2/t78XHJcPNWsglQhUzzG4hTwrNUi1FzJ4"}>
+    <ConnectionProvider endpoint={"https://api.devnet.solana.com"}>
             <WalletProvider wallets={[]} autoConnect>
                 <WalletModalProvider>
                     <WalletMultiButton />

@@ -19,4 +19,9 @@ wss.on("connection", function(socket){
             socket.send("pong")
         }
     })
+
+
+    setInterval(() => {
+        socket.send("Hello");
+    }, 500);
 })

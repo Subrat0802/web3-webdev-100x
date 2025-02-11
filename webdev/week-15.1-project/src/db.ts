@@ -23,7 +23,7 @@ const contentSchema = new Schema({
 })
 
 export const contentModel = model("ContentSchema", contentSchema) 
-<<<<<<< HEAD
+
 
 const LinkSchema = new Schema({
     hash:String,
@@ -31,5 +31,4 @@ const LinkSchema = new Schema({
 })
 
 export const linkModel = model("Links", LinkSchema);
-=======
->>>>>>> 02fa1bc865db0b17f8b7ceb2b7958b14fc979788
+

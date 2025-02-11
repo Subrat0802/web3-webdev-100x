@@ -55,7 +55,7 @@ function EthSend() {
   function sendETH(){
     sendTransaction({
       to: document.getElementById("address").value,
-      value:"100000000000000000"
+      value:"100000000000000000" //17 0's => 0.1 ETH
     })
   }
 

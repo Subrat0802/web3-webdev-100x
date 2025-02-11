@@ -18,8 +18,8 @@ function App() {
         {mnemonic.split(" ").map((el, i) => <li key={i}>{el}</li>)}
       </ul>}
       <button onClick={createMnumonics}>Create Seed Phrase</button>
-      <SolanaWallet />
-      <EthWallet />
+      <SolanaWallet mnemonic={mnemonic}/>
+      <EthWallet mnemonic={mnemonic}/>
     </>
   );
 }

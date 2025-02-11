@@ -15,9 +15,7 @@ courseRouter.post("/purchase",userMiddleware, async function (req, res) {
     res.json({
       message:"server error"
     })
-  }
-
-  
+  }  
 });
 
 courseRouter.get("/preview", userMiddleware, async function (req, res) {

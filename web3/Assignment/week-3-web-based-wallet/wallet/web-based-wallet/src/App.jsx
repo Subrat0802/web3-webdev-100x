@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { generateMnemonic } from "bip39";
+import Solana from "./components/Solana";
+import EthWallet from "./components/EthWallet";
 
 function App() {
   const [terminal, setTerminal] = useState(false);
@@ -15,7 +17,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-black w-screen h-screen flex justify-center items-center">
+      <div className="bg-black w-screen h-screen flex justify-center items-center overflow-x-hidden">
         {!terminal ? (
           <button
             onClick={createWallet}
@@ -24,9 +26,9 @@ function App() {
             Create your web-based wallet
           </button>
         ) : (
-          <div className="text-white border border-gray-900 w-[80%] min-h-[80vh] flex justify-center items-start transition-all duration-300 pt-4">
+          <div className="text-white border border-gray-900 w-[80%] min-h-[80vh] flex flex-col transition-all duration-300 pt-4">
             {/* Change 1: Added 'items-start' to prevent children from stretching vertically */}
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex gap-4 flex-wrap mx-auto">
               {/* Change 2: Added 'flex-wrap' to allow wrapping of elements to the next line */}
               {mneomonics === "" ? (
                 <p>Loading...</p>
@@ -41,6 +43,10 @@ function App() {
                   </div>
                 ))
               )}
+            </div>
+            <div className="flex justify-around mt-7 ">
+                <Solana mneomonics={mneomonics}/>
+                <EthWallet mneomonics={mneomonics}/>
             </div>
           </div>
         )}

@@ -7,6 +7,7 @@ const Airdrop = () => {
 
     const wallet = useWallet();
 
+
     const {connection} = useConnection();
 
     const sendAirDropToUser = async () => {

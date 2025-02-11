@@ -4,7 +4,7 @@ import React from 'react'
 const Posts = ({getter}) => {
     const query = useQuery({ queryKey: ['posts'], queryFn: getter, refetchInterval:10000 })
 
-    if(query.isLoading) return <div>Loading....</div>
+    if(query.isLoading) return <div>Loading....</div> 
 
     if(query.error) return <div>Server error Error</div>
 
