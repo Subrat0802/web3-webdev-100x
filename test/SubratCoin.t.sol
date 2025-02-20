@@ -9,6 +9,10 @@ contract TestSubratCoin is Test {
 
     SubratCoin c;
 
+
+
+    
+
     function setUp() public {
         c = new SubratCoin();
     }
