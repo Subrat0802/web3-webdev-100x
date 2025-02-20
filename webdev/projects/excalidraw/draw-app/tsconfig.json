@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",                        // Make sure relative imports work
+      "paths": {
+        "@repo/*": ["packages/*"]             // Ensure imports from @repo/ are resolved from the packages directory
+      },
+      "moduleResolution": "node",             // Resolve modules as Node.js would
+      "module": "ESNext",                     // Use ES modules
+      "target": "ESNext",                     // Use the latest JS features
+      "esModuleInterop": true,                // Allow compatibility with CommonJS modules
+      "skipLibCheck": true                    // Skip type-checking of declaration files for faster builds
+    },
+    "include": [
+      "apps/**/*",                            // Include all files in apps
+      "packages/**/*"                         // Include all files in packages
+    ]
+  }
+  

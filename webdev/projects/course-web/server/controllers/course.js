@@ -1,6 +1,7 @@
 const { ZodError } = require("zod");
 const Course = require("../models/course");
 const { zodCourseSchema } = require("../utils/zodAuth");
+const User = require("../models/users");
 
 exports.createCourse = async (req, res) => {
   try {
@@ -25,9 +26,16 @@ exports.createCourse = async (req, res) => {
       });
     }
 
+    const addCourseToUser = await User.findOneAndUpdate(
+        {_id:req.user.id}, 
+        {$push: {courses: response.id}}, 
+        {new:true}
+    )
+
     res.status(200).json({
       data: response,
       message: "Course created successfully",
+      addCourseToUser:addCourseToUser
     });
   } catch (error) {
     if (error instanceof ZodError) {
@@ -48,9 +56,13 @@ exports.createCourse = async (req, res) => {
   }
 };
 
+
+
+
+
 exports.getAllCourses = async (req, res) => {
   try {
-    const allCourses = await Course.find({});
+    const allCourses = await Course.find({}).populate("instructor");
     if (!allCourses) {
       res.status(403).json({
         message: "No Course available",
@@ -88,3 +100,14 @@ exports.courseCreatedByInstructor = async (req, res) => {
     });
   }
 };
+
+
+
+
+exports.courseBuyByStudent = async (req, res) => {
+    try{
+        const response = await Course.find
+    }catch(erorr){
+
+    }
+}

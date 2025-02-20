@@ -1,0 +1,22 @@
+{
+  "name": "@repo/backend-common",
+  "version": "1.0.0",
+  "main": "dist/index.js",   
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",  
+      "require": "./dist/index.js"  
+    },
+    "./config": {
+      "import": "./dist/config.js", 
+      "require": "./dist/config.js"
+    }
+  },
+  "type": "module", 
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@types/node": "^22.10.5"
+  }
+}
