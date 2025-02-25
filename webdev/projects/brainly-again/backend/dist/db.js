@@ -33,11 +33,27 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModel = void 0;
+exports.linkModel = exports.contentModel = exports.UserModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 mongoose_1.default.connect("mongodb://localhost:27017/brainly");
-const UserSchema = new mongoose_1.Schema({
-    username: { type: String, unique: true, required: true },
-    password: { type: String, required: true }
+const userSchema = new mongoose_1.Schema({
+    username: {
+        type: String,
+        unique: true
+    },
+    password: String
 });
-exports.UserModel = mongoose_1.default.model("User", UserSchema);
+exports.UserModel = (0, mongoose_1.model)("User", userSchema);
+const contentSchema = new mongoose_1.Schema({
+    type: { type: String },
+    link: { type: String },
+    title: { type: String },
+    tag: [{ type: mongoose_1.default.Types.ObjectId, ref: "Tag" }],
+    userId: { type: mongoose_1.default.Types.ObjectId, ref: "User", required: true }
+});
+exports.contentModel = (0, mongoose_1.model)("ContentSchema", contentSchema);
+const LinkSchema = new mongoose_1.Schema({
+    hash: String,
+    userId: { type: mongoose_1.default.Types.ObjectId, ref: "User", required: true, unique: true }
+});
+exports.linkModel = (0, mongoose_1.model)("Links", LinkSchema);

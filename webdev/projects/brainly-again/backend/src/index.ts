@@ -1,90 +1,191 @@
-import express from "express";
-const app = express();
-import mongoose from "mongoose";
-import { Request, Response } from "express";
+import express from "express"
 import jwt from "jsonwebtoken";
-import { UserModel } from "./db";
+import { contentModel, linkModel, UserModel } from "./db";
+import { JWT_PASS } from "./confg";
+import { userMiddleware } from "./middleware";
+import { random } from "./utils";
+import cors from "cors"
 
-const JWT_PASS = "123456"
+const app = express();
 app.use(express.json());
+app.use(cors());
 
-
-app.post("/api/v1/signup", async (req: Request, res: Response) => {
-    try {
-        const { username, password } = req.body;
-        await UserModel.create({ username, password });
-
-        res.status(200).json({
-            message: "user is signup"
+app.post("/api/v1/signup", async (req, res) => {
+    try{
+        const {username, password} = req.body;
+        await UserModel.create({username, password});
+    
+        res.json({
+            message:"User signed up"
         })
-
-    } catch (error) {
-        res.status(500).json({
-            message: "Server error"
+    }catch(err){
+        console.log(err, "error")
+        res.json({
+            message:"User already exist"
         })
     }
-
+    
 })
 
-app.post("/api/v1/signin", async (req: Request, res: Response): Promise<void> => {
 
-    try {
-        const { username, password } = req.body;
-        const user = await UserModel.findOne({ username });;
+app.post("/api/v1/signin",async (req, res) => {
+    const {username, password} = req.body;
+    const existingUser = await UserModel.findOne({username, password});
 
-        if (!user) {
-            res.status(404).json({
-                message: "user not present please sign up first"
-            })
-            return;
-        }
-
-        if (user?.password !== password) {
-            res.status(404).json({
-                message: "user not present please sign up first"
-            })
-            return;
-        }
-
+    if(existingUser){
         const token = jwt.sign({
-            id: user?._id,
-            username: user?.username
+            id:existingUser._id
         }, JWT_PASS)
 
-
-        res.status(200).json({
-            message: "user is signup",
-            token: token,
-            user: user
+        res.json({
+            token:token,
+            message:"User signin"
         })
-    } catch (e) {
-        res.status(404).json({
-            message: "Invalid crdentials"
-        });
-        return;
+    }else{
+        res.json({
+            message:"Incorrect Credentials"
+        })
     }
-
 })
 
-app.post("/api/v1/content", (req, res) => {
-
+app.post("/api/v1/content", userMiddleware, async (req, res) => {
+    try{
+        const {link, type, title} = req.body;
+       
+        const resposne = await contentModel.create({
+            type,
+            link,
+            title,
+            //@ts-ignore
+            userId:req.userId,
+            tags:[]
+        })
+    
+        res.json({
+            message:"Content added",
+            // data:resposne
+        })
+    }catch(err){
+        res.json({
+            message:"invalid credential server error"
+        })
+    }
+    
 })
 
-app.get("/api/v1/content", (req, res) => {
-
+app.get("/api/v1/content",userMiddleware, async (req, res) => {
+    try{
+        //@ts-ignore
+        const userId = req.userId
+        const content = await contentModel.find({userId: userId}).populate("userId", "username")
+        
+        res.json({
+            message:"User content",
+            data:content
+        })
+    }catch(err){
+        res.json({
+            message:"Invalid while fetching all content"
+        })
+    }
 })
 
-app.delete("/api/v1/content", (req, res) => {
-
+app.delete("/api/v1/content",userMiddleware, async (req, res) => {
+    try{
+        const {contentId} = req.body;
+        //@ts-ignore
+        const userId = req.userId;
+        const response = await contentModel.findOneAndDelete({_id:contentId, userId:userId});
+        res.json({
+            message:"COntent Deleted successfully",
+            deletedContent:response
+        })
+    }catch(err){
+        res.json({
+            message:"Invalid server error"
+        })
+    }
 })
 
-app.post("/api/v1/brain/share", (req, res) => {
+app.post("/api/v1/brain/share",userMiddleware, async (req, res) => {
+    try{
+        const {share} = req.body;
+        const hash = random(10);
+        if(share){
 
+            const existingLink = await linkModel.findOne({
+                //@ts-ignore
+                userId:req.userId
+            })
+            if(existingLink){
+                res.json({
+                    hash:existingLink
+                })
+                return;
+            }
+            
+            await linkModel.create({
+                //@ts-ignore
+                userId:req.userId,
+                hash:hash
+            })
+        }else{
+            await linkModel.deleteOne({
+                //@ts-ignore
+                userId:req.userid
+            })
+            res.json({
+                message:"Remove link"
+            })
+            
+        }
+        res.json({
+            message:"Updated sharable link",
+            link:"http://localhost:3000/api/v1/brain/" + hash
+        })
+    }catch(err){
+        res.json({
+            message:"Server error"
+        })
+    }
 })
 
-app.get("/api/v1/brain/:shareLink", (req, res) => {
+app.get("/api/v1/brain/:sharLink",userMiddleware, async (req, res) => {
+    try{
+        const hash = req.params.sharLink;
+        const link = await linkModel.findOne({
+            hash: hash
+        })
+        if(!link){
+            res.status(411).json({
+                mesage:"Sorry incorrect input"
+            })
+            return;
+        }
 
+        const content = await contentModel.find({
+            userId: link.userId
+        })
+        const user = await UserModel.findOne({
+            _id:link.userId
+        })
+        if(!user){
+            res.status(411).json({
+                message:"user not found, error should idelly not happen"
+            })
+            return;
+        }
+        res.json({
+            username:user.username,
+            content:content
+        })
+    }catch(err){
+
+    }
 })
+const PORT = 3000;
+app.listen(PORT);
+console.log("app running at ", PORT)
 
 
-app.listen(3000);
+//http://localhost:3000/api/v1/brain/g5px3nejbl
