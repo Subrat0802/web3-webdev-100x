@@ -1,13 +1,51 @@
 import CrossIcon from "../../icons/CrossIcon";
+import { InputBox } from "./InputBox";
 import Button from "./Button";
+import { useRef, useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
 interface ModalProps {
   open: boolean;
   onClose?: () => void;
 }
 
+enum contentType {
+  Youtube = "youtube",
+  Twitter = "twitter",
+}
+
 const CreateContentModal = ({ open, onClose }: ModalProps) => {
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const linkRef = useRef<HTMLInputElement>(null);
+  
+  const [type, setType] = useState(contentType.Youtube);
+
+  async function addContent() {
+    const title = titleRef.current?.value;
+    const link = linkRef.current?.value;
+    // const type = typeRef.current?.value;
+    
+
+    const response = await axios.post(BACKEND_URL + "/content", {
+      title,
+      link,
+      type
+    }, {
+      headers:{
+        "Authorization": localStorage.getItem("token")
+      }
+    })  
+
+    if(response.statusText === "OK"){
+      
+
+    }
+  }
+
   if (!open) return null;
+
 
   return (
     <>
@@ -26,10 +64,16 @@ const CreateContentModal = ({ open, onClose }: ModalProps) => {
             </div>
 
             <div className="flex flex-col w-full p-3">
-              <input className="border border-slate-200 rounded-md w-full p-2 mb-2" placeholder="Title" />
-              <input className="border border-slate-200 rounded-md w-full p-2 mb-2" placeholder="Link" />
-              <input className="border border-slate-200 rounded-md w-full p-2 mb-6" placeholder="Type" />
-              <Button  varient={'primary'} size={'lg'} text={"Submit Brain"}  />
+              <InputBox ref={titleRef} placeholder="Title" type="text" />
+              <InputBox ref={linkRef} placeholder="Link" type="text" />
+              
+
+              <div className="flex justify-center my-4 gap-4">
+                <Button onClick={() => setType(contentType.Youtube)} size="sm" varient={type === contentType.Youtube ? "primary" : "secondary"} text="Youtube" />
+                <Button onClick={() => setType(contentType.Twitter)} size="sm" varient={type === contentType.Twitter ? "primary" : "secondary"} text="Twitter" />
+              </div>
+
+              <Button onClick={addContent} varient={'primary'} size={'lg'} text={"Submit Brain"} />
             </div>
           </div>
         </div>
@@ -39,3 +83,6 @@ const CreateContentModal = ({ open, onClose }: ModalProps) => {
 };
 
 export default CreateContentModal;
+
+
+

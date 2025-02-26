@@ -9,6 +9,8 @@ export interface ButtonProps {
     startIcon?: ReactElement,   // #?- means this is optional
     endIcon?: ReactElement,      // #?- means this is optional
     onClick?: () => void,
+    widthFull?: boolean,
+    loading?:boolean
 }
 
 const varientStyle = {
@@ -17,16 +19,16 @@ const varientStyle = {
 }
 
 const sizeStyle = {
-    "sm": "py-2 px-4",
-    "md": "py-3 px-6",
-    "lg": "py-4 px-7"
+    "sm": "py-2 px-3",
+    "md": "py-2 px-6",
+    "lg": "py-3 px-7"
 }
 
-const defaultStyle = "rounded-lg p-4 flex gap-2 justify-center  items-center hover:scale-105 "
+const defaultStyle = "rounded-lg p-4 flex gap-2 justify-center  items-center hover:bg-purple-700"
 
-const Button = ({ varient, size, text, startIcon, endIcon, onClick }: ButtonProps) => {
+const Button = ({ varient, size, text, startIcon, endIcon, widthFull, onClick }: ButtonProps) => {
     return (
-        <button onClick={onClick} className={` ${varientStyle[varient]} ${defaultStyle} ${sizeStyle[size]}`}>
+        <button onClick={onClick} className={` ${varientStyle[varient]} ${defaultStyle} ${sizeStyle[size]} ${widthFull && "w-full "}`}>
             {startIcon ? <div>{startIcon}</div> : null} {text} {endIcon ? <div>{endIcon}</div> : null}
         </button>
 

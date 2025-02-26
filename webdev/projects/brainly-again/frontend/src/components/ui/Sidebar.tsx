@@ -11,11 +11,11 @@ const Sidebar = () => {
         <div>
             <Logo />
             <div>
-                <SidevarItem text="Tweets" icon={<HomeIcon size="md" />} />
-                <SidevarItem text="Videos" icon={<Video size="md" />} />
-                <SidevarItem text="Documents" icon={<Documents size="md" />} />
-                <SidevarItem text="Links" icon={<LinkIcon size="md" />} />
-                <SidevarItem text="Tags" icon={<TagIcon size="md" />} />
+                <SidevarItem text="Tweets" icon={<HomeIcon size="lg" />} />
+                <SidevarItem text="Videos" icon={<Video size="lg" />} />
+                <SidevarItem text="Documents" icon={<Documents size="lg" />} />
+                <SidevarItem text="Links" icon={<LinkIcon size="lg" />} />
+                <SidevarItem text="Tags" icon={<TagIcon size="lg" />} />
             </div>
 
         </div>

@@ -25,6 +25,12 @@ app.use((0, cors_1.default)());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, password } = req.body;
+        if (username === "" && password === "") {
+            res.status(404).json({
+                message: "All fields are required"
+            });
+            return;
+        }
         yield db_1.UserModel.create({ username, password });
         res.json({
             message: "User signed up"

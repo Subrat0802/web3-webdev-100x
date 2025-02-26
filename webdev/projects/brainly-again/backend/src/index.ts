@@ -13,6 +13,12 @@ app.use(cors());
 app.post("/api/v1/signup", async (req, res) => {
     try{
         const {username, password} = req.body;
+        if(username === "" && password === ""){
+            res.status(404).json({
+                message:"All fields are required"
+            })
+            return;
+        }
         await UserModel.create({username, password});
     
         res.json({
