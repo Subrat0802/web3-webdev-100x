@@ -134,7 +134,7 @@ app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awa
         else {
             yield db_1.linkModel.deleteOne({
                 //@ts-ignore
-                userId: req.userid
+                userId: req.userId
             });
             res.json({
                 message: "Remove link"

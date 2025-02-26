@@ -132,7 +132,7 @@ app.post("/api/v1/brain/share",userMiddleware, async (req, res) => {
         }else{
             await linkModel.deleteOne({
                 //@ts-ignore
-                userId:req.userid
+                userId:req.userId
             })
             res.json({
                 message:"Remove link"
