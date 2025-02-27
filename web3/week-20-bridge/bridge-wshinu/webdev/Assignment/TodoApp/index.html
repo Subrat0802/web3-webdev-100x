@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-2xl font-bold mb-4">Todo Application</h1>
+        
+        <!-- Todo Form -->
+        <form id="todoForm" class="mb-8">
+            <input type="text" id="title" placeholder="Title" class="border p-2 mr-2" required>
+            <input type="text" id="description" placeholder="Description" class="border p-2 mr-2">
+            <label class="inline-flex items-center">
+                <input type="checkbox" id="doneOrNot" class="mr-2"> Done
+            </label>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Add Todo</button>
+        </form>
+        
+        <!-- Todo List -->
+        <ul id="todoList" class="bg-white rounded-lg shadow-lg p-4">
+            <!-- Todos will be added here dynamically -->
+        </ul>
+    </div>
+
+    <script src="index.js" defer></script> <!-- Ensure it's loaded after HTML -->
+
+</body>
+</html>
