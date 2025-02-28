@@ -21,3 +21,4 @@ export const userMiddleware = (req: Request, res: Response, next:NextFunction) =
         })
     }
 }
+

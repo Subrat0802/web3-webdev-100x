@@ -24,15 +24,17 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { username, password } = req.body;
-        if (username === "" && password === "") {
+        const zodeAuthValidation = yield utils_1.userZodvalidation.parseAsync(req.body);
+        const { username, email, password } = zodeAuthValidation;
+        const response = yield db_1.UserModel.create({ username, email, password });
+        if (!response) {
             res.status(404).json({
-                message: "All fields are required"
+                message: "Something went wrong while new creating user"
             });
             return;
         }
-        yield db_1.UserModel.create({ username, password });
         res.json({
+            response: response,
             message: "User signed up"
         });
     }

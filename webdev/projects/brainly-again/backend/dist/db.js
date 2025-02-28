@@ -41,6 +41,7 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         unique: true
     },
+    email: { type: String, unique: true },
     password: String
 });
 exports.UserModel = (0, mongoose_1.model)("User", userSchema);
