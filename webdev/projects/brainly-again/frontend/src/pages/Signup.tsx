@@ -9,25 +9,39 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
 
     const nameRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
     const passRef = useRef<HTMLInputElement>(null);
+    const conPassRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
 
 
     async function signup() {
-        const username = nameRef.current?.value;
-        const password = passRef.current?.value;
-        console.log("username", username, password)
+        try {
 
-        const data = await axios.post(BACKEND_URL+"/signup", {
-            username,
-            password
-        })
-        if(data?.statusText === "OK"){
-            navigate("/dashboard")
-            // alert("Sign up done")
-        }
-        else{
-            return;
+            const username = nameRef.current?.value;
+            const email = emailRef.current?.value;
+            const password = passRef.current?.value;
+            const confirmPassword = conPassRef.current?.value;
+            // console.log("username", username, email, password)
+
+            const data = await axios.post(BACKEND_URL + "/signup", {
+                username,
+                email,
+                password,
+                confirmPassword
+            })
+            console.log("data", data);
+            if (data?.statusText === "OK") {
+                navigate("/signin")
+                // alert("Sign up done")
+            }
+            else {
+                console.log("else case", data);
+                return;
+            }
+        } catch (error) {
+            //@ts-ignore
+            console.log("catch case", error?.response?.data?.error[0]?.message);
         }
     }
 
@@ -35,8 +49,12 @@ const Signup = () => {
         <div className="h-screen w-screen bg-gray-200 flex  justify-center px-16 md:p-1 items-center">
             <div className="flex flex-col bg-white rounded-lg p-6 w-full   md:w-[25%]">
                 <p className="text-2xl mb-5 font-sans font-bold text-gray-700">Sign up</p>
+
                 <InputBox ref={nameRef} placeholder="username" type="text" />
-                <InputBox ref={passRef} placeholder="Password" type="password" />
+                <InputBox ref={emailRef} placeholder="Email" type="email" />
+                <InputBox ref={passRef} placeholder="Password" type="text" />
+                <InputBox ref={conPassRef} placeholder="Password" type="text" />
+
                 <div className="w-full flex">
                     <Button widthFull={true} onClick={signup} text="Sign up" varient="primary" size="lg" />
                 </div>

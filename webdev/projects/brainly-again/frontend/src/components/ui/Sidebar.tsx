@@ -8,7 +8,7 @@ import SidevarItem from "./SidevarItem"
 
 const Sidebar = () => {
     return (
-        <div>
+        <div className="">
             <Logo />
             <div>
                 <SidevarItem text="Tweets" icon={<HomeIcon size="lg" />} />

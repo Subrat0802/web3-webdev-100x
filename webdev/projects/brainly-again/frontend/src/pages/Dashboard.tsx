@@ -12,12 +12,13 @@ interface CardData {
     type: "twitter" | "youtube";
     link: string;
     title: string;
-  }
+}
 
 
 const Dashboard = () => {
     const [cardsData, setCardsData] = useState<CardData[]>([]);
     const [loading, setLoading] = useState(false);
+    
 
     async function getAllCards() {
         setLoading(true)
@@ -44,17 +45,21 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className='flex  '>
+            <div className='flex  dark:bg-[#3b3b3b] bg-white'>
                 <CreateContentModal open={modalOpen} onClose={() => {
                     setModalOpen(false)
                 }} />
 
-                <div className="min-h-[100vh] w-[25%] border-r shadow-md border-gray-200">
+                <div className="min-h-[100vh] w-[25%] dark:border-[#4b4b4b] border-r shadow-md border-gray-200">
                     <Sidebar />
                 </div>
 
                 <div className="w-full">
                     <div className="flex justify-end items-center p-4 gap-3 mb-3  w-full ">
+                        <button onClick={() => {
+                            //@ts-ignore
+                            document.querySelector("html").classList.toggle("dark");
+                        }}>Dark Mode</button>
                         <Button onClick={() => setModalOpen(true)} startIcon={<PlusIcon size={'md'} />} varient={'primary'} size={'md'} text={'Add Content'} />
                         <Button startIcon={<Shareicon size={'md'} />} varient={'secondary'} size={'md'} text={"Share Brain"} />
 
