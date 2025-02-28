@@ -8,9 +8,15 @@ import Sidebar from "../components/ui/Sidebar";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
+interface CardData {
+    type: "twitter" | "youtube";
+    link: string;
+    title: string;
+  }
+
 
 const Dashboard = () => {
-    const [cardsData, setCardsData] = useState([]);
+    const [cardsData, setCardsData] = useState<CardData[]>([]);
     const [loading, setLoading] = useState(false);
 
     async function getAllCards() {
@@ -60,10 +66,6 @@ const Dashboard = () => {
                                 <Card key={i} type={el?.type} link={el?.link} title={el?.title} />
                             ))
                         }
-
-                        {/* <Card type="youtube" link={"https://www.youtube.com/watch?v=ivWJnB0NIyU"} title={"Youtube Imp"} />
-                        <Card type="twitter" link={"https://twitter.com/ILA_NewsX/status/1894612148212432935"} title={"Important meme"} /> */}
-
                     </div>
 
 
