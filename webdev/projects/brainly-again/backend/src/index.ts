@@ -254,17 +254,17 @@ app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
                 //@ts-ignore
                 userId: req.userId
             })
-            res.json({
-                message: "Remove link"
+            res.status(200).json({
+                message: "Remove link, now you content is private"
             })
 
         }
-        res.json({
+        res.status(200).json({
             message: "Updated sharable link",
             link: "http://localhost:3000/api/v1/brain/" + hash
         })
     } catch (err) {
-        res.json({
+        res.status(500).json({
             message: "Server error"
         })
     }
@@ -295,7 +295,7 @@ app.get("/api/v1/brain/:sharLink", userMiddleware, async (req, res) => {
             })
             return;
         }
-        res.json({
+        res.status(200).json({
             username: user.username,
             content: content
         })
