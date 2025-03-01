@@ -1,0 +1,1 @@
+echo "@openzeppelin/=node_modules/@openzeppelin/" > remappings.txt
