@@ -22,45 +22,62 @@ app.post("/signup", async (req: Request, res: Response) => {
     return;
   }
   try {
-    await prismaClient.user.create({
+    const response = await prismaClient.user.create({
       data: {
         email: parseData.data?.username,
+        //todo hash the password
         password: parseData.data?.password,
         name: parseData.data?.name,
       },
     });
     res.json({
-      userId: 123,
+      response: response,
     });
   } catch (error) {
     res.status(411).json({
-        message:"user is already exist"
-    })
+      message: "user is already exist",
+    });
   }
 });
 
-app.post("/signin", (req, res) => {
-  const data = SignInSchema.safeParse(req.body);
+app.post("/signin", async (req, res) => {
+  const data = await SignInSchema.safeParse(req.body);
+
   if (!data.success) {
     res.json({
       message: "Incorrect Inputs",
     });
     return;
   }
+  //TODO compare the hash password
+  const user = await prismaClient.user.findFirst({
+    where: {
+      email: data.data.username,
+      password: data.data.password,
+    },
+  });
+
+  if (!user) {
+    res.status(403).json({
+      message: "Not authorized, signup first",
+    });
+    return;
+  }
   const userId = 1;
   const token = jwt.sign(
     {
-      userId,
+      userId: user?.id,
     },
     JWT_SECRET
   );
 
-  res.json({
-    token,
+  res.status(200).json({
+    token: token,
+    response: user,
   });
 });
 
-app.post("/room", middleware, (req, res) => {
+app.post("/room", middleware, async (req, res) => {
   const data = CreateRoomSchema.safeParse(req.body);
   if (!data.success) {
     res.json({
@@ -68,9 +85,28 @@ app.post("/room", middleware, (req, res) => {
     });
     return;
   }
-  res.json({
-    roomId: 123,
-  });
+  //@ts-ignore
+  const userId = req.userId;
+
+  try {
+    const response = await prismaClient.room.create({
+      data: {
+        slug: data.data.name,
+        adminId: userId,
+      },
+    });
+  
+    res.json({
+      response: response,
+    });
+  } catch (error) {
+    res.status(411).json({
+      mesage:"Error while creating new room",
+      error
+    })
+  }
+
+  
 });
 
 app.listen(3001);
