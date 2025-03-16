@@ -95,34 +95,62 @@ app.post("/room", middleware, async (req, res) => {
         adminId: userId,
       },
     });
-  
+
     res.json({
       response: response.id,
     });
   } catch (error) {
     res.status(411).json({
-      mesage:"Error while creating new room",
-      error
-    })
+      mesage: "Error while creating new room",
+      error,
+    });
   }
 });
 
-
 app.get("/chats/:roomId", async (req, res) => {
-  const roomId = Number(req.params.roomId);
-  const messages = await prismaClient.chat.findMany({
-    where:{
-      roomId:roomId
-    },
-    orderBy:{
-      id:"desc"
-    },
-    take:50
-  })
+  try{
+    const roomId = Number(req.params.roomId);
+    console.log(req.params.roomId);
+    const messages = await prismaClient.chat.findMany({
+      where: {
+        roomId: roomId,
+      },
+      orderBy: {
+        id: "desc",
+      },
+      take: 50,
+    });
+  
+    res.json({
+      messages,
+    });
+  }catch(error){
+    console.log(error);
+    res.json({
+      error
+    })
+  }
+  
+});
 
-  res.json({
-    messages
-  })
-})
+app.get("/room/:slug", async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    const room = await prismaClient.room.findFirst({
+      where: {
+        slug,
+      },
+    });
+
+    res.json({
+      room,
+    });
+  } catch (e) {
+    res.json({
+      message:"Error",
+      e
+    })
+  }
+});
 
 app.listen(3001);
