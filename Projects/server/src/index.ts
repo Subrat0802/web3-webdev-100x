@@ -5,10 +5,13 @@ import bcrypt from "bcrypt";
 import { ZodError } from "zod";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import cors from "cors";
+import axios from "axios";
 
 const app = express();
 app.use(express.json());
 dotenv.config();
+app.use(cors()); 
 
 app.post("/signup", async (req, res) => {
   try {
@@ -121,6 +124,20 @@ app.post("/signin", async (req, res) => {
         })
     }
   }
+});
+
+
+const SWIGGY_API_URL = process.env.SWIGGY_API || "";
+
+app.get("/api/restaurants", async (req, res) => {
+    try {
+        const response = await axios.get(SWIGGY_API_URL, {
+            headers: { "User-Agent": "Mozilla/5.0" } 
+        });
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch data" });
+    }
 });
 
 app.listen(3000, () => {
