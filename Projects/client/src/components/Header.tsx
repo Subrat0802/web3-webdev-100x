@@ -13,7 +13,7 @@ import { useState } from "react";
 const Header = () => {
     const [lightMode, setLightMode] = useState(false);
   return (
-    <div className="flex justify-center w-full px-6 py-4 md:px-20  font-poppins dark:bg-[#0c0c0c] dark:text-white shadow-md">
+    <div className="flex justify-center w-full px-6 py-4 md:px-20  dark:bg-[#0c0c0c] dark:text-white shadow-md">
       <div className="w-full flex justify-between ">
         <div className="flex justify-center items-center gap-4 md:gap-10">
           <div className="w-16 ">
@@ -34,7 +34,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex  justify-center items-center gap-10 text-md text-gray-700 invisible lg:visible">
+        <div className="flex font-semibold justify-center items-center gap-10 text-md text-gray-700 invisible lg:visible">
           <span className="transition-all duration-200 cursor-pointer hover:text-[#FF5200] dark:text-gray-100 flex justify-center items-center gap-1">
             <FiHome /> Home
           </span>
@@ -59,11 +59,18 @@ const Header = () => {
               const htmlElement = document.querySelector("html");
               if (htmlElement) { 
                 htmlElement.classList.toggle("dark");
+
+                if(lightMode){
+                  localStorage.setItem("theme", "dark")
+                }else{
+                  localStorage.setItem("theme", "light")
+                }
+                
               }
             }}
           >
             
-            {lightMode ? <IoSunnyOutline /> : <IoMoonOutline />}
+            {!lightMode ? <IoSunnyOutline /> : <IoMoonOutline />}
           </button>
         </div>
       </div>

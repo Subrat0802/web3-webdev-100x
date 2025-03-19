@@ -7,9 +7,11 @@ export default {
   darkMode:'selector',
   theme: {
     extend: {
-      fontFamily:{
-         sans: ["'PT Sans'", "sans-serif"], 
-         poppins: ["'Poppins'", "sans-serif"], // Poppins
+      fontFamily: {
+        gilroy: ['Gilroy', 'Arial', 'sans-serif'],
+      },
+      colors: {
+        customDark: 'rgba(2, 6, 12, 0.92)',
       },
       
     },

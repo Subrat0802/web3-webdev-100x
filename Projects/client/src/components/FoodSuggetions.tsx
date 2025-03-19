@@ -46,9 +46,9 @@ const scrollRight = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="flex flex-col py-2">
+        <div className="flex flex-col py-2 select-none">
           <div className=" flex justify-between font-semibold pb-3">
-            <p className="text-2xl">What's on your mind?</p>
+            <p className="text-[21px] text-rgba(2, 6, 12, 0.92) font-bold">What's on your mind?</p>
             <div className="flex gap-3">
               <div
                 onClick={scrollLeft}
