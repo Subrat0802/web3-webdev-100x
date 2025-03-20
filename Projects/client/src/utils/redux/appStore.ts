@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import resData from "./resSlice";
+import cartData from "./cartSlice";
 
 const appStore = configureStore({
     reducer: {
         webDataThroughApi: resData,
+        cartDataApi: cartData
     }
 });
 

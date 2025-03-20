@@ -10,9 +10,8 @@ import { IoMoonOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 const Header = () => {
-    const [lightMode, setLightMode] = useState(false);
+  const [lightMode, setLightMode] = useState(false);
   return (
     <div className="flex justify-center w-full px-6 py-4 md:px-20  dark:bg-[#0c0c0c] dark:text-white shadow-md">
       <div className="w-full flex justify-between ">
@@ -35,10 +34,12 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex font-semibold justify-center items-center gap-10 text-md text-gray-700 invisible lg:visible">
-          <Link to={"/home"}><span className="transition-all duration-200 cursor-pointer hover:text-[#FF5200] dark:text-gray-100 flex justify-center items-center gap-1">
-            <FiHome /> Home
-          </span></Link>
+        <div className="flex font-semibold justify-center items-center gap-10 text-md invisible lg:visible">
+          <Link to={"/home"}>
+            <span className="transition-all duration-200 cursor-pointer hover:text-[#FF5200] dark:text-gray-100 flex justify-center items-center gap-1">
+              <FiHome /> Home
+            </span>
+          </Link>
           <span className="transition-all duration-200 flex cursor-pointer hover:text-[#FF5200]  dark:text-gray-100 justify-center items-center gap-1">
             <FiSearch /> Search
           </span>
@@ -51,26 +52,27 @@ const Header = () => {
           <span className="flex hover:text-[#FF5200] dark:text-gray-100 justify-center items-center cursor-pointer gap-1">
             <FiLogIn /> Sign In
           </span>
-          <span className="flex hover:text-[#FF5200] dark:text-gray-100 justify-center items-center gap-1 cursor-pointer">
-            <FiShoppingCart /> Cart
-          </span>
-          <button className="flex hover:text-[#FF5200] text-2xl dark:text-gray-100 justify-center items-center gap-1 cursor-pointer"
+          <Link to={"/cart"}>
+            <span className="flex hover:text-[#FF5200] dark:text-gray-100 justify-center items-center gap-1 cursor-pointer">
+              <FiShoppingCart /> Cart
+            </span>
+          </Link>
+          <button
+            className="flex hover:text-[#FF5200] text-2xl dark:text-gray-100 justify-center items-center gap-1 cursor-pointer"
             onClick={() => {
-                setLightMode(!lightMode)
+              setLightMode(!lightMode);
               const htmlElement = document.querySelector("html");
-              if (htmlElement) { 
+              if (htmlElement) {
                 htmlElement.classList.toggle("dark");
 
-                if(lightMode){
-                  localStorage.setItem("theme", "dark")
-                }else{
-                  localStorage.setItem("theme", "light")
+                if (lightMode) {
+                  localStorage.setItem("theme", "dark");
+                } else {
+                  localStorage.setItem("theme", "light");
                 }
-                
               }
             }}
           >
-            
             {!lightMode ? <IoSunnyOutline /> : <IoMoonOutline />}
           </button>
         </div>
@@ -80,5 +82,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

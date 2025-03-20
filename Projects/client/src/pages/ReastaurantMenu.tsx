@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../utils/redux/appStore";
 import RestaurantInfoMenu from "../components/RestaurantInfoMenu";
 import { useState, useEffect } from "react";
-import RestaurantMenuAccordian from "../components/RestaurantMenuAccordian";
+import RestaurantMenuAccordian from "@/components/RestaurantMenuAccordian";
+
 
 const ReastaurantMenu = () => {
   const [dataAccourdian, setDataAccourdian] = useState<any[]>([]);
