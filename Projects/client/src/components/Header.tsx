@@ -8,6 +8,7 @@ import { FiHome } from "react-icons/fi";
 import { IoSunnyOutline } from "react-icons/io5";
 import { IoMoonOutline } from "react-icons/io5";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
@@ -35,9 +36,9 @@ const Header = () => {
           </div>
         </div>
         <div className="flex font-semibold justify-center items-center gap-10 text-md text-gray-700 invisible lg:visible">
-          <span className="transition-all duration-200 cursor-pointer hover:text-[#FF5200] dark:text-gray-100 flex justify-center items-center gap-1">
+          <Link to={"/home"}><span className="transition-all duration-200 cursor-pointer hover:text-[#FF5200] dark:text-gray-100 flex justify-center items-center gap-1">
             <FiHome /> Home
-          </span>
+          </span></Link>
           <span className="transition-all duration-200 flex cursor-pointer hover:text-[#FF5200]  dark:text-gray-100 justify-center items-center gap-1">
             <FiSearch /> Search
           </span>

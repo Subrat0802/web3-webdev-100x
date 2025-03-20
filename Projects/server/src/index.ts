@@ -11,7 +11,7 @@ import axios from "axios";
 const app = express();
 app.use(express.json());
 dotenv.config();
-app.use(cors()); 
+app.use(cors());
 
 app.post("/signup", async (req, res) => {
   try {
@@ -92,7 +92,6 @@ app.post("/signin", async (req, res) => {
 
     const JWT_SECRET = process.env.JWT_SECRET_KEY;
 
-
     if (!JWT_SECRET) {
       throw new Error("JWT_SECRET is not defined in the environment variables");
     }
@@ -108,36 +107,49 @@ app.post("/signin", async (req, res) => {
     checkuser.password = undefined;
 
     res.status(200).json({
-        message:"user is signin",
-        response:checkuser,
-        token:token
-    })
+      message: "user is signin",
+      response: checkuser,
+      token: token,
+    });
   } catch (error) {
-    if(error instanceof ZodError){
-        res.status(409).json({
-            message:"Validation error",
-            error:error.errors
-        })
-    }else{
-        res.status(500).json({
-            message:"internal server error"
-        })
+    if (error instanceof ZodError) {
+      res.status(409).json({
+        message: "Validation error",
+        error: error.errors,
+      });
+    } else {
+      res.status(500).json({
+        message: "internal server error",
+      });
     }
   }
 });
 
-
 const SWIGGY_API_URL = process.env.SWIGGY_API || "";
 
 app.get("/api/restaurants", async (req, res) => {
-    try {
-        const response = await axios.get(SWIGGY_API_URL, {
-            headers: { "User-Agent": "Mozilla/5.0" } 
-        });
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: "Failed to fetch data" });
-    }
+  try {
+    const response = await axios.get(SWIGGY_API_URL, {
+      headers: { "User-Agent": "Mozilla/5.0" },
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch data" });
+  }
+});
+
+const RES_MENU_API = process.env.RESTAURANT_MENU_API || "";
+
+app.get("/api/restaurant/menu/:id", async (req, res) => {
+  try {
+    const {id} = req.params;
+    const response = await axios.get(`${RES_MENU_API}${id}`, {
+      headers: { "User-Agent": "Mozilla/5.0" },
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch data" });
+  }
 });
 
 app.listen(3000, () => {

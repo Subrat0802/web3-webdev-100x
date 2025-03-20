@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define the structure of a restaurant item
+
 interface ImageGridCard {
   id: string;
   imageId: string;
@@ -9,20 +9,23 @@ interface ImageGridCard {
 interface RestaurantCard {
   card: {
     card: {
-      imageGridCards?: {
-        info: ImageGridCard[];
-      };
+      imageGridCards?: { info: ImageGridCard[] };
     };
   };
 }
 
+
 interface RestaurantState {
-  RestaurantData: RestaurantCard[]; 
+  RestaurantData: RestaurantCard[];
+  RestaurantInfoMenuData: RestaurantCard[];
+  RestaurantMenuData: RestaurantCard[];
 }
 
-// ✅ Ensure it's always an array
+
 const initialState: RestaurantState = {
   RestaurantData: [],
+  RestaurantInfoMenuData: [],
+  RestaurantMenuData: [],
 };
 
 const resData = createSlice({
@@ -32,8 +35,14 @@ const resData = createSlice({
     addAllRestaurantsData: (state, action: PayloadAction<RestaurantCard[]>) => {
       state.RestaurantData = action.payload;
     },
+    addRestaurantInfoMenuData: (state, action: PayloadAction<RestaurantCard[]>) => {
+      state.RestaurantInfoMenuData = action.payload;
+    },
+    addRestaurantMenuData: (state, action: PayloadAction<RestaurantCard[]>) => {
+      state.RestaurantMenuData = action.payload;
+    },
   },
 });
 
-export const { addAllRestaurantsData } = resData.actions;
+export const { addAllRestaurantsData, addRestaurantMenuData, addRestaurantInfoMenuData } = resData.actions;
 export default resData.reducer;
