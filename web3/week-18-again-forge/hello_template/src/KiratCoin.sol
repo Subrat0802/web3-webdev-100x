@@ -9,7 +9,7 @@ contract KiratCoin is ERC20 {
 
     }
     function mint(address to, uint256 amount) public {
-        console.log("hi there");
+        console.logString("hi there");
         _mint(to, amount);
     }
 }

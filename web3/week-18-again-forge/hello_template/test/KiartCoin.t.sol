@@ -5,11 +5,24 @@ import "src/KiratCoin.sol";
 import "forge-std/Test.sol";
 
 contract TestKiratCoin is Test {
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
     KiratCoin c;
 
     function setUp() public {
         c = new KiratCoin();
     }
+
+    function testTransferEmit() public { 
+        c.mint(address(this), 100);
+        vm.expectEmit(true, true, false, true);
+
+        emit Transfer(address(this), 0x42f57cf1c864cCb072B65eCEE5F9B79c6fE0BC5E, 10);
+        c.transfer(0x42f57cf1c864cCb072B65eCEE5F9B79c6fE0BC5E, 10);
+    }
+
+    //277a285f9afdc0861a2fd1588e53b9b82ad0f81fac7b3f08e4d1a2fa5663b07e
 
     function testMint() public {
         c.mint(address(this), 100); //whoever delopy this contract mint himself 100 token of kirat coin
