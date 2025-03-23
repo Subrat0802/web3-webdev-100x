@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CartItem {
-  id: string;
-  name: string;
+  [x: string]: number;
+  id?: string | any; 
+  name?: string | any;
   price: number;
   quantity: number;
 }

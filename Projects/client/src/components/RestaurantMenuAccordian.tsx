@@ -58,7 +58,7 @@ const RestaurantMenuAccordian = ({ accData }: { accData: any[] }) => {
                       />
                       <button
                         onClick={() => {
-              
+                          console.log("el", el)
                           dispatch(addToCart(el.card.info))
                         }}
                       className="absolute bottom-[-10px] bg-[#FF5200] px-2 py-1 rounded-md text-white font-semibold shadow-md hover:bg-orange-600">

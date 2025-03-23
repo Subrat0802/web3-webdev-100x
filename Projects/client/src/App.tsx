@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Header from './components/Header'
 import ReastaurantMenu from './pages/ReastaurantMenu'
 import Cart from './pages/Cart'
+import OrderCon from './pages/OrderCon'
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/home' element={<Home />}/>
         <Route path='/restaurantmenu/:id' element={<ReastaurantMenu />}/>
         <Route path='/cart' element={<Cart />}/>
+        <Route path='/orderconfirm' element={<OrderCon />}/>
       </Routes>
     </div>
   )
