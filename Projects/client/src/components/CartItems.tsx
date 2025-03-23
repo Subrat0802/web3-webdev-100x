@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 const CartItems = ({ data }: {data: any}) => {
   const { name, imageId, defaultPrice, ratings, price } = data;
   return (
-    <div className="flex justify-between items-center bg-[#222222] p-2 rounded-lg mb-2">
+    <div className="flex justify-between shadow-2xl items-center  p-2 rounded-lg mb-2">
       <div className="">
         <p className="text-2xl font-semibold">{name}</p>
         <p className="flex justify-items-center items-center">

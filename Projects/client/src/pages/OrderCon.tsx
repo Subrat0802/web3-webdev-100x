@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const OrderCon = () => {
   return (
-    <div className='w-full h-[100vh] bg-[#121212] flex flex-col justify-center text-xl gap-2 text-white items-center'>
+    <div className='w-full h-[100vh] first-line:flex flex-col justify-center text-xl gap-2 text-white items-center'>
         <div className='spinner'>
 
         </div>

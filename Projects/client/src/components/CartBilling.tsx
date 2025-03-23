@@ -29,7 +29,7 @@ const CartBilling = () => {
   }, [fetchTotalPrice]);
 
   return (
-    <div className="p-4 text-white bg-[#222222] rounded-lg shadow-xl">
+    <div className="p-4 shadow-2xl  rounded-lg shadow-xl">
       <p className="text-3xl font-bold">Billing Details</p>
       <div className="flex justify-between mt-3">
         <p>Item Total</p>
@@ -39,7 +39,7 @@ const CartBilling = () => {
         <p>Delivery partner fee</p>
         <p>₹ 15</p>
       </div>
-      <div className="border w-full border-[#000000] mt-2 mb-2"></div>
+      <div className="border w-full mt-2 mb-2"></div>
       <div className="flex justify-between">
         <p>Delivery Tip</p>
         <p className="text-[#FF5200]">Add tip</p>
