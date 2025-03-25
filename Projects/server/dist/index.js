@@ -19,9 +19,12 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const zod_1 = require("zod");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const cors_1 = __importDefault(require("cors"));
+const axios_1 = __importDefault(require("axios"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 dotenv_1.default.config();
+app.use((0, cors_1.default)());
 app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const validation = yield zodvalidation_1.UserValidation.parseAsync(req.body);
@@ -89,34 +92,57 @@ app.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             });
             return;
         }
-        const JWT_SECRET = process.env.JWT_SECRET;
+        const JWT_SECRET = process.env.JWT_SECRET_KEY;
         if (!JWT_SECRET) {
             throw new Error("JWT_SECRET is not defined in the environment variables");
         }
-        console.log("jwt", JWT_SECRET);
         const token = yield jsonwebtoken_1.default.sign({
             userId: checkuser._id,
         }, JWT_SECRET, { expiresIn: "1h" });
-        console.log("token", token);
         checkuser.password = undefined;
         res.status(200).json({
             message: "user is signin",
             response: checkuser,
-            token: token
+            token: token,
         });
     }
     catch (error) {
         if (error instanceof zod_1.ZodError) {
             res.status(409).json({
                 message: "Validation error",
-                error: error.errors
+                error: error.errors,
             });
         }
         else {
             res.status(500).json({
-                message: "internal server error"
+                message: "internal server error",
             });
         }
+    }
+}));
+const SWIGGY_API_URL = process.env.SWIGGY_API || "";
+app.get("/api/restaurants", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield axios_1.default.get(SWIGGY_API_URL, {
+            headers: { "User-Agent": "Mozilla/5.0" },
+        });
+        res.json(response.data);
+    }
+    catch (error) {
+        res.status(500).json({ error: "Failed to fetch data" });
+    }
+}));
+const RES_MENU_API = process.env.RESTAURANT_MENU_API || "";
+app.get("/api/restaurant/menu/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const response = yield axios_1.default.get(`${RES_MENU_API}${id}`, {
+            headers: { "User-Agent": "Mozilla/5.0" },
+        });
+        res.json(response.data);
+    }
+    catch (error) {
+        res.status(500).json({ error: "Failed to fetch data" });
     }
 }));
 app.listen(3000, () => {
