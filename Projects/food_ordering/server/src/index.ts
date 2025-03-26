@@ -152,6 +152,6 @@ app.get("/api/restaurant/menu/:id", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("app is runnig at port number 3000");
 });
