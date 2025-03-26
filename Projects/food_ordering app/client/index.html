@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_72,h_72/portal/m/logo_192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Your food</title>
+    <script>
+      const theme = localStorage.getItem("theme") || "light";
+      document.documentElement.classList.add(theme);
+    </script>
+    
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
