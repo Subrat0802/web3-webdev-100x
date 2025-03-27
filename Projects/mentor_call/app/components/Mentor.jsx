@@ -38,40 +38,36 @@ export const Mentor = () => {
             name="Role"
             id="Role"
           >
-            <option value="volvo">Role</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option value="SE/SDE">SE/SDE</option>
+            <option value="DS/AI/ML">DS/AI/ML</option>
+            <option value="Consulting">Consulting</option>
           </select>
           <select
             className="text-gray-600 border  border-gray-300 font-semibold p-2 rounded-lg"
             name="Company"
             id="Company"
           >
-            <option value="volvo">Company</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option value="FAANG">FAANG</option>
+            <option value="Startup">Startup</option>
+            <option value="MNC's">MNC's</option>
+            <option value="Apple">Apple</option>
           </select>
           <select
             className="text-gray-600 border  border-gray-300 font-semibold p-2 rounded-lg"
             id="Slot"
             name="Slot"
           >
-            <option value="volvo">Slot</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option value="This Week">This week</option>
+            <option value="This Month">This month</option>
+            <option value="Anytime">Anytime</option>
           </select>
           <select
             className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg"
             name="Rating"
             id="Rating"
           >
-            <option value="volvo">Rating</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+            <option value="Low to high">Low to high</option>
+            <option value="High to low">High to low</option>
           </select>
         </div>
       </div>

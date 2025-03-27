@@ -5,12 +5,12 @@ import { useBoolean } from "../context/BoolContextAbout";
 const Sidebar = () => {
   const { value, setValue, userId, setUserId } = useBoolean();
   return (
-    <div className="bg-[#F8FAFC]  flex flex-col   gap-3 border-r-2 border-gray-200 pt-24 px-5 min-h-screen">
+    <div className="bg-[#F8FAFC]  flex flex-col   gap-3 border-r-2 border-gray-200 pt-24 px-5 min-h-full">
 
       <div className="flex items-center gap-2 bg-[#E2E8F0] px-4 py-2 rounded-lg text-md font-medium">
         <User size={20} className="text-gray-600" />
         {
-          !value && <p className="text-gray-900">Mentor</p>
+          !value && <p className="text-gray-900 pr-16">Mentor</p>
         }
       </div>
 

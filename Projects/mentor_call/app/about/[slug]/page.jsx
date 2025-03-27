@@ -1,9 +1,10 @@
 "use client";
-import { profile } from "@/app/data/Profiles"; // Ensure correct import path
+import { profile } from "@/app/data/Profiles"; 
 import { useBoolean } from "../../context/BoolContextAbout";
 import { useEffect, useState, useMemo } from "react";
 import { ProfileCard } from "@/app/components/ProfileCard";
 import { Services } from "@/app/components/Services";
+import { Reviews } from "@/app/components/Reviews";
 
 const AboutPage = () => {
   const { userId, value } = useBoolean();
@@ -18,8 +19,9 @@ const AboutPage = () => {
       {userData ? (
         <>
           <ProfileCard data={userData} />
-          <div className="border w-[80%] mx-auto">
+          <div className="w-[80%] mx-auto">
             <Services />
+            <Reviews data={userData.reviews}/>
           </div>
         </>
       ) : (
