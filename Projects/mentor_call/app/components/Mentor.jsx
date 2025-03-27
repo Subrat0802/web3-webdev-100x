@@ -1,8 +1,13 @@
-import Link from "next/link";
 import { profile } from "../data/Profiles";
-import { ShieldCheck, Search } from "lucide-react";
+import { Search } from "lucide-react";
+import { ProfileCard } from "./ProfileCard";
+
+
 
 export const Mentor = () => {
+
+  
+
   return (
     <>
       {" "}
@@ -75,30 +80,8 @@ export const Mentor = () => {
         <div className="flex flex-col gap-4">
           {profile.map((el, i) => {
             return (
-              <div key={i} className="flex justify-between p-6 text-gray-700 border border-gray-300 rounded-xl">
-                <div className="w-[21%] relative ">
-                  <img className="rounded-lg" src={el.image} />
-                  <div className="w-full bg-black opacity-60 bg-gradient-to-t absolute bottom-0 rounded-b-lg p-1 "></div>
-                </div>
-                <div className="px-6 p-2 w-[77%]  flex flex-col gap-4">
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-3 justify-center items-center">
-                      <p className="font-semibold text-2xl">{el.name}</p>
-                      <ShieldCheck size={22} className="text-green-600 mt-1" />
-                    </div>
-                    <Link href="/about">
-                      <button className="bg-[#334155] cursor-pointer text-white px-4 py-[6px] rounded-lg">
-                        View Profile
-                      </button>
-                    </Link>
-                  </div>
-                  <p className="font-semibold text-xl">{el.role}</p>
-                  <p className=" p-5 bg-gray-100 text-lg rounded-2xl font-semibold">
-                    {el.description}
-                  </p>
-                </div>
-              </div>
-            );
+              <ProfileCard data={el} key={el.id}/>
+            )
           })}
         </div>
       </div>
