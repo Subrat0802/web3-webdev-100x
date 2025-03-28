@@ -4,10 +4,27 @@ import { ProfileCard } from "./ProfileCard";
 import { useState, useRef, useEffect } from "react";
 
 export const Mentor = () => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState([]);
   const [filteredResults, setFilteredResults] = useState(["Google", "Amazon", "Apple"]);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const searchRef = useRef(null);
+
+
+  const handleOptionText = (e) => {
+    if(e === ""){
+      return;
+    }
+    else if(searchText.find((el) => el === e)){
+      return;
+    }
+    // console.log("eee", e);
+    setSearchText((prev) => [...prev, e]);
+    console.log("cdsc", searchText);
+  }
+
+  useEffect(() => {
+    
+  }, [searchText]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -51,16 +68,16 @@ export const Mentor = () => {
         >
           <Search size={18} className="text-gray-500" />
           <input
-            className="w-full bg-transparent outline-none text-gray-700"
+            className="w-full bg-transparent outline-none text-gray-800"
             placeholder="Search by name"
-            value={searchText}
+            // value={searchText}
             onChange={handleSearch}
             onFocus={() => setDropdownVisible(true)}
           />
           {isDropdownVisible && filteredResults.length > 0 && (
             <div className="absolute top-full left-0 w-full z-20 bg-gray-100 rounded-md shadow-md mt-1">
               {filteredResults.map((el, i) => (
-                <p className="px-3 py-2 hover:bg-gray-200 cursor-pointer" key={i}>
+                <p className="px-3 py-2 hover:bg-gray-200 cursor-pointer text-sm text-gray-600" key={i}>
                   {el}
                 </p>
               ))}
@@ -69,28 +86,43 @@ export const Mentor = () => {
         </div>
 
         <div className="flex gap-7">
-          <select className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Role">
+          <select onChange={(e) => handleOptionText(e.target.value)} className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Role">
+            <option value="" disabled selected>Role</option>
             <option value="SE/SDE">SE/SDE</option>
             <option value="DS/AI/ML">DS/AI/ML</option>
             <option value="Consulting">Consulting</option>
           </select>
-          <select className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Company">
+          <select onChange={(e) => handleOptionText(e.target.value)}  className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Company">
+            <option value=""  disabled selected>Company</option>
             <option value="FAANG">FAANG</option>
             <option value="Startup">Startup</option>
             <option value="MNC's">MNC's</option>
             <option value="Apple">Apple</option>
           </select>
-          <select className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Slot">
+          <select onChange={(e) => handleOptionText(e.target.value)}  className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Slot">
+          <option value="" disabled selected>Slot</option>
             <option value="This Week">This week</option>
             <option value="This Month">This month</option>
             <option value="Anytime">Anytime</option>
           </select>
-          <select className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Rating">
+          <select onChange={(e) => handleOptionText(e.target.value)}  className="text-gray-600 border border-gray-300 font-semibold p-2 rounded-lg" name="Rating">
+          <option value="" disabled selected>Rating</option>
             <option value="Low to high">Low to high</option>
             <option value="High to low">High to low</option>
           </select>
         </div>
       </div>
+
+      {searchText.length > 0 &&  <div className="w-[85%] mx-auto pb-4 flex flex-wrap items-center  gap-3"> 
+          {
+            searchText.map((el) => (
+              <div className=" border border-gray-300 rounded-xl px-4 py-2 text-sm text-gray-800 shadow-md ">
+                {el}
+              </div>
+            ))
+          }
+          <p className="text-sm text-gray-500 hover:text-gray-700 cursor-pointer" onClick={() =>setSearchText([])}>Clear filter</p>
+      </div>}
 
       {/* Mentor Profiles */}
       <div className="w-[85%] mx-auto">
