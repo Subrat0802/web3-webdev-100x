@@ -9,10 +9,22 @@ export interface ButtonProps {
     onClick?: () => void,
 }
 
-export const Button = () => {
-    return(
-        <button>
+const varientSize = {
+    "primary": "bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity",
+    "secondary":"bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2.5 rounded-xl font-medium hover:opacity-90 transition-opacity"
+}
 
+const sizeStyle = {
+    "sm":"min-w-32",
+    "lg":"w-full",
+    "md":"min-w-56"
+}
+
+
+export const Button = ({text, varient, size}: ButtonProps) => {
+    return(
+        <button className={`${varientSize[varient]} ${sizeStyle[size]}`}>
+            {text}
         </button>
     )
 }

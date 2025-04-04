@@ -1,5 +1,5 @@
-import { Brain, Twitter, Youtube, Image, StickyNote, ArrowRight, Search, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Twitter, Youtube, Image, StickyNote, ArrowRight, Search, Star } from 'lucide-react';
+import { Header } from '../components/Header';
 
 function HomePage() {
   return (
@@ -9,21 +9,7 @@ function HomePage() {
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[120px] translate-x-1/2" />
       
       {/* Header */}
-      <header className="relative w-full py-6 px-4 sm:px-6 lg:px-8 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-2 rounded-xl">
-              <Brain className="w-8 h-8 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-              SecondBrain
-            </span>
-          </div>
-          <Link to={"/signup"}><button className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2.5 rounded-xl font-medium hover:opacity-90 transition-opacity">
-            Get Started
-          </button></Link>
-        </div>
-      </header>
+      <Header buttonone="Get Started"/>
 
       {/* Hero Section */}
       <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
