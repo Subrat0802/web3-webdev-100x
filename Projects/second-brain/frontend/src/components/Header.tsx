@@ -1,12 +1,17 @@
 import { Brain } from "lucide-react";
 import { Button } from "./ui/Button";
+import { ReactElement } from "react";
 
 export interface ButtonProps {
   buttonone?:string,
-  buttontwo?:string
+  buttontwo?:string,
+  iconOne?:ReactElement,
+  iconTwo?:ReactElement,
+  onButtonOneClick?:() => void,
+  onButtonTwoClick?:() => void
 }
 
-export const Header = ({ buttonone, buttontwo }: ButtonProps) => {
+export const Header = ({ buttonone, buttontwo, iconOne, iconTwo, onButtonOneClick, onButtonTwoClick }: ButtonProps) => {
   return (
     <header className="relative w-full py-6 px-4 sm:px-6 lg:px-8 border-b border-white/10">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -19,9 +24,9 @@ export const Header = ({ buttonone, buttontwo }: ButtonProps) => {
           </span>
         </div>
         <div className="flex gap-3">
-          {buttonone && <Button text={buttonone} varient="primary" size="sm" />}
+          {buttonone && <Button text={buttonone} onClick={onButtonOneClick} startIcon={iconOne} varient="primary" size="sm" />}
 
-          {buttontwo && <Button text={buttontwo} varient="primary" size="sm" />}
+          {buttontwo && <Button text={buttontwo}  onClick={onButtonTwoClick} startIcon={iconTwo} varient="primary" size="sm" />}
         </div>
       </div>
     </header>

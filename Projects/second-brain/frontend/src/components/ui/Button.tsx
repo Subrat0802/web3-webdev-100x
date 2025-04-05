@@ -21,10 +21,10 @@ const sizeStyle = {
 }
 
 
-export const Button = ({text, varient, size}: ButtonProps) => {
+export const Button = ({text, varient, size, startIcon, onClick}: ButtonProps) => {
     return(
-        <button className={`${varientSize[varient]} ${sizeStyle[size]}`}>
-            {text}
+        <button onClick={onClick} className={"flex " + `${varientSize[varient]} ${sizeStyle[size]}`}>
+            <div className="mr-2">{startIcon}</div> {text}
         </button>
     )
 }

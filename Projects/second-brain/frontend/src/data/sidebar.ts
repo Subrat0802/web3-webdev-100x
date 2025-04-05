@@ -36,22 +36,27 @@ export const sidebar = [
 export const instagram = [
     {
         id:1,
-        link:"https://www.instagram.com/p/DIByPW7NTeo/?utm_source=ig_web_copy_link"
+        title:"instagram post",
+        link:"https://www.instagram.com/p/DIByPW7NTeo/?utm_source=ig_web_copy_link",
+        type:"instagram"
     },
     {
         id:2,
-        link:"https://www.instagram.com/p/DICW2tNzedU/?utm_source=ig_web_copy_link"
+        title:"youtube post",
+        link:"https://www.youtube.com/watch?v=VZXFQxf087w",
+        type:"youtube"
     },
     {
         id:3,
-        link:"https://www.instagram.com/p/DIBC8klRW1P/?utm_source=ig_web_copy_link"
+        title:"x post",
+        link:"https://x.com/_TheSanatani/status/1907816302409814158",
+        type:"twitter"
     },
     {
         id:4,
-        link:"https://www.instagram.com/p/DICPrFOIF_6/?utm_source=ig_web_copy_link"
+        title:"x post",
+        link:"https://x.com/elonmusk/status/1907930552587678184",
+        type:"twitter"
     },
-    {
-        id:5,
-        link:"https://www.instagram.com/p/DH5_cGPioWQ/?utm_source=ig_web_copy_link"
-    },
+
 ]
