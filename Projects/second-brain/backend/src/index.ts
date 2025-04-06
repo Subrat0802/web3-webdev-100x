@@ -1,24 +1,28 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import { userSigninZodValidation, userZodvalidation } from "./utils";
-import { userModel } from "./db";
+import { userContentZodValidation, userSigninZodValidation, userZodvalidation } from "./utils";
+import { contentModel, userModel } from "./db";
 import bcrypt from "bcrypt";
 import { ZodError } from "zod";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { userMiddleware } from "./middleware";
 
 const app = express();
 dotenv.config();
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
 const PORT = process.env.PORT;
 
 
 app.post("/api/v1/signup", async (req, res) => {
     try{
-        console.log("username", req.body);
+        // console.log("username", req.body);
         const zodeAuthValidation = await userZodvalidation.parseAsync(req.body);
         
         const { username, email, password } = zodeAuthValidation;
@@ -117,25 +121,79 @@ app.post("/api/v1/signin", async (req, res) => {
     }
 })
 
-app.post("/api/v1/content", (req, res) => {
+app.post("/api/v1/content",userMiddleware, async (req, res) => {
     try{
+        const zodvalidation = await userContentZodValidation.parseAsync(req.body);
         
+        const {title, link, type} = zodvalidation;
+
+        const createContent = await contentModel.create({
+            title,
+            link,
+            type,
+            //@ts-ignore
+            userId: req?.userId
+            // tag:[]
+        });
+        if(!createContent){
+            res.status(409).json({
+                message:"Error while crateing content, try again."
+            })
+            return;
+        }
+
+        res.status(200).json({
+            message:"Your new content is created"
+        })
     }catch(error){
-        
+        if(error instanceof ZodError){
+            res.status(408).json({
+                message:"Validation Error",
+                error:error.errors
+            })
+        }
+        else{
+            res.status(500).json({
+                message:"Internal server error"
+            })
+        }
     }
 })
 
-app.get("/api/v1/content", (req, res) => {
+app.get("/api/v1/content", userMiddleware, async (req, res) => {
     try{
-
-    }catch(error){
+        // @ts-ignore
+        const userId = req?.userId;
+        const checkUser = await userModel.findOne({_id:userId});
+        if(!checkUser){
+            res.status(409).json({
+                message:"invalid credentials(token), please login again"
+            })
+            return;
+        }
+        const response = await contentModel.find({userId:userId});
         
+        if(!response){
+            res.status(409).json({
+                message:"No content"
+            })
+            return;
+        }
+
+        res.status(200).json({
+            message:"All content",
+            data:response
+        })
+    }catch(error){
+        res.status(500).json({
+            message:"Internal server error"
+        })
     }
 })
 
 app.delete("/api/v1/content", (req, res) => {
     try{
-
+        
     }catch(error){
         
     }

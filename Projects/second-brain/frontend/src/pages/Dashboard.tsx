@@ -3,12 +3,39 @@ import { Plus, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { SideBar } from "../components/Sidebar";
-import { instagram } from "../data/sidebar";
 import { CreateContentModal } from "../components/CreateContentModal";
 import { PostCard } from "../components/PostCard";
+import axios from "axios";
+
+
+type ContentItem = {
+  _id:string,
+  title:string,
+  link:string,
+  type:string
+}
 
 export const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [fullSidebar, setFullSidebar] = useState<boolean>(false);
+  const [contentData, setContentData] = useState<ContentItem[]>([]);
+
+  const fecthContent = async () => {
+    try{
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL + "/content", {
+        withCredentials: true
+      });
+      console.log("RESPONSE DASHOARD", response);
+      setContentData(response?.data?.data);
+
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fecthContent();
+  }, [openModal]);
 
   useEffect(() => {
     if ((window as any).instgrm) {
@@ -18,7 +45,7 @@ export const Dashboard = () => {
     if ((window as any).twttr && (window as any).twttr.widgets) {
       (window as any).twttr.widgets.load();
     }
-  }, []);
+  }, [contentData]);
 
   const handleButtonOne = () => {
     setOpenModal(!openModal);
@@ -27,6 +54,7 @@ export const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#0F172A] overflow-hidden relative">
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[120px] translate-x-1/2" />
       {
         openModal && <CreateContentModal setOpenModal={setOpenModal}/>
       }
@@ -45,7 +73,7 @@ export const Dashboard = () => {
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <div className="left-0 border-r border-white/10 min-h-full">
-          <SideBar />
+          <SideBar fullSidebar={fullSidebar} setFullSidebar={setFullSidebar}/>
         </div>
 
         {/* Content */}
@@ -53,9 +81,9 @@ export const Dashboard = () => {
     
 
         <div className="m-4 w-full flex flex-wrap gap-8">
-          {instagram.map((el) => {
+          {contentData.map((el) => {
             return (
-              <PostCard key={el.id} type={el?.type} link={el?.link} title={el?.title} />
+              <PostCard key={el?._id} type={el?.type} link={el?.link} title={el?.title} />
             );
           })}
         </div>

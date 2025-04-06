@@ -53,13 +53,20 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const zod_1 = require("zod");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const cors_1 = __importDefault(require("cors"));
+const middleware_1 = require("./middleware");
 const app = (0, express_1.default)();
 dotenv.config();
 app.use((0, cookie_parser_1.default)());
+app.use((0, cors_1.default)({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 app.use(express_1.default.json());
 const PORT = process.env.PORT;
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // console.log("username", req.body);
         const zodeAuthValidation = yield utils_1.userZodvalidation.parseAsync(req.body);
         const { username, email, password } = zodeAuthValidation;
         const checkEmail = yield db_1.userModel.findOne({ email: email });
@@ -69,7 +76,7 @@ app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, funct
             });
             return;
         }
-        const passwordHashed = bcrypt_1.default.hash(password, 10);
+        const passwordHashed = yield bcrypt_1.default.hash(password, 10);
         const response = yield db_1.userModel.create({ email, password: passwordHashed, username });
         if (!response) {
             res.status(408).json({
@@ -106,7 +113,7 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
             });
             return;
         }
-        const matchpassword = yield bcrypt_1.default.compare(existingUser === null || existingUser === void 0 ? void 0 : existingUser.password, password);
+        const matchpassword = yield bcrypt_1.default.compare(password, existingUser === null || existingUser === void 0 ? void 0 : existingUser.password);
         if (!matchpassword) {
             res.status(409).json({
                 message: "Password is incorrect"
@@ -146,18 +153,70 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         }
     }
 }));
-app.post("/api/v1/content", (req, res) => {
+app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const zodvalidation = yield utils_1.userContentZodValidation.parseAsync(req.body);
+        const { title, link, type } = zodvalidation;
+        const createContent = yield db_1.contentModel.create({
+            title,
+            link,
+            type,
+            //@ts-ignore
+            userId: req === null || req === void 0 ? void 0 : req.userId
+            // tag:[]
+        });
+        if (!createContent) {
+            res.status(409).json({
+                message: "Error while crateing content, try again."
+            });
+            return;
+        }
+        res.status(200).json({
+            message: "Your new content is created"
+        });
     }
     catch (error) {
+        if (error instanceof zod_1.ZodError) {
+            res.status(408).json({
+                message: "Validation Error",
+                error: error.errors
+            });
+        }
+        else {
+            res.status(500).json({
+                message: "Internal server error"
+            });
+        }
     }
-});
-app.get("/api/v1/content", (req, res) => {
+}));
+app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // @ts-ignore
+        const userId = req === null || req === void 0 ? void 0 : req.userId;
+        const checkUser = yield db_1.userModel.findOne({ userId });
+        if (!checkUser) {
+            res.status(409).json({
+                message: "invalid credentials(token), please login again"
+            });
+        }
+        const response = yield db_1.contentModel.find({ userId: userId });
+        if (!response) {
+            res.status(409).json({
+                message: "No content"
+            });
+            return;
+        }
+        res.status(200).json({
+            message: "All content",
+            data: response
+        });
     }
     catch (error) {
+        res.status(500).json({
+            message: "Internal server error"
+        });
     }
-});
+}));
 app.delete("/api/v1/content", (req, res) => {
     try {
     }

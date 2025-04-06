@@ -34,13 +34,12 @@ const contentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tag: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "Tag",
-      required: true,
-    },
-  ],
+  // tag: [
+  //   {
+  //     type: mongoose.Types.ObjectId,
+  //     ref: "Tag",
+  //   },
+  // ],
   userId: {
     type: mongoose.Types.ObjectId,
     ref: "User",
@@ -48,7 +47,7 @@ const contentSchema = new mongoose.Schema({
   },
 });
 
-export const conteanrModel = model("Content", contentSchema);
+export const contentModel = model("Content", contentSchema);
 
 const linkSchema = new mongoose.Schema({
   hash: {

@@ -47,12 +47,6 @@ export const instagram = [
         type:"youtube"
     },
     {
-        id:3,
-        title:"x post",
-        link:"https://x.com/_TheSanatani/status/1907816302409814158",
-        type:"twitter"
-    },
-    {
         id:4,
         title:"x post",
         link:"https://x.com/elonmusk/status/1907930552587678184",

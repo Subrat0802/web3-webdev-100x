@@ -1,14 +1,14 @@
 import {z} from "zod";
 
-export function random(len: number){
-    let options = "qwertyuiopasdfghjklmnbvcxz12345678";
-    let length = options.length
-    let ans = "";
-    for(let i = 0; i < len; i++){
-        ans+=options[Math.floor((Math.random() *  length))]
-    }
-    return ans;
-}
+// export function random(len: number){
+//     let options = "qwertyuiopasdfghjklmnbvcxz12345678";
+//     let length = options.length
+//     let ans = "";
+//     for(let i = 0; i < len; i++){
+//         ans+=options[Math.floor((Math.random() *  length))]
+//     }
+//     return ans;
+// }
 
 
 export const userZodvalidation = z.object({

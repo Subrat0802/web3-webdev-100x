@@ -42,9 +42,3 @@ export const PostCard = ({ title, link, type }: cardProps) => {
   );
 };
 
-// <blockquote
-//                 key={el.id}
-//                 className="instagram-media"
-//                 data-instgrm-permalink={el.link}
-//                 data-instgrm-version="14"
-//               ></blockquote>
