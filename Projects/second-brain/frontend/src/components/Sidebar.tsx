@@ -12,7 +12,7 @@ export const SideBar = ({ fullSidebar, setFullSidebar }: SideBarProps) => {
     <div
       className={`flex flex-col justify gap-2 h-screen  bg-[#0F172A] 
         ${fullSidebar ? "w-52" : "w-16"} 
-        transition-all duration-300 ease-in-out`}
+        transition-all duration-500 ease-in-out`}
     >
       <div
         onClick={() => setFullSidebar(!fullSidebar)}

@@ -191,11 +191,32 @@ app.get("/api/v1/content", userMiddleware, async (req, res) => {
     }
 })
 
-app.delete("/api/v1/content", (req, res) => {
+app.delete("/api/v1/content",userMiddleware, async (req, res) => {
     try{
-        
+        const {postId} = req.body;
+        //@ts-ignore
+        const userId = req?.userId;
+
+        const checkUser = await contentModel.findOne({_id:postId, userId:userId});
+        if(!checkUser){
+            res.status(408).json({
+                message:"Post is not available"
+            })
+            return;
+        }
+
+        const deleteContent = await contentModel.deleteOne({_id:postId}, {new:true})
+
+        res.status(200).json({
+            message:"Content Deleted succesfully"
+        })
+
+
     }catch(error){
-        
+        res.status(500).json({
+            message:"Internal server error"
+        })
+
     }
 })
 
@@ -212,6 +233,29 @@ app.post("/api/v1/brain/:shareLink", (req, res) => {
 
     }catch(error){
         
+    }
+})
+
+
+app.get("/api/v1/me", userMiddleware, async (req, res) => {
+    try{
+        //@ts-ignore
+        const userId = req?.userId;
+        if(!userId){
+            res.status(404).json({
+                message:"User is not loggedIn, try again (token is missing)"
+            })
+            return;
+        }
+        else{
+            res.status(200).json({
+                message:"User is logged in"
+            })
+        }
+    }catch(error){
+        res.status(500).json({
+            message:"Internal Server error while validating token"
+        })
     }
 })
 

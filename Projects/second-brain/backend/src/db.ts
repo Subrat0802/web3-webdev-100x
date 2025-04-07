@@ -44,7 +44,7 @@ const contentSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
     required: true,
-  },
+  }
 });
 
 export const contentModel = model("Content", contentSchema);
