@@ -35,7 +35,13 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.linkModel = exports.contentModel = exports.userModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-mongoose_1.default.connect("mongodb://localhost:27017/newBrain");
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
+const MONGODBURL = process.env.MONGODB_URL;
+if (!MONGODBURL) {
+    throw new Error("MONGODB_URL is not defined in .env");
+}
+mongoose_1.default.connect(MONGODBURL);
 const userSchema = new mongoose_1.default.Schema({
     username: {
         type: String,
@@ -76,7 +82,7 @@ const contentSchema = new mongoose_1.default.Schema({
         type: mongoose_1.default.Types.ObjectId,
         ref: "User",
         required: true,
-    },
+    }
 });
 exports.contentModel = (0, mongoose_1.model)("Content", contentSchema);
 const linkSchema = new mongoose_1.default.Schema({

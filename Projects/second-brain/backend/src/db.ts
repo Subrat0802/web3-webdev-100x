@@ -1,8 +1,16 @@
 import mongoose, { model } from "mongoose";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-mongoose.connect("mongodb://localhost:27017/newBrain");
+const MONGODBURL = process.env.MONGODB_URL; 
 
-const userSchema = new mongoose.Schema({
+if(!MONGODBURL){
+  throw new Error("MONGODB_URL is not defined in .env");
+}
+
+mongoose.connect(MONGODBURL);
+
+const userSchema = new mongoose.Schema({ 
   username: {
     type: String,
     trim: true,

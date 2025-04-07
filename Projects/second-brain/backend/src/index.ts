@@ -13,11 +13,11 @@ const app = express();
 dotenv.config();
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.FRONTEND_LINK,
   credentials: true
 }));
 app.use(express.json());
-const PORT = process.env.PORT;
+const PORT = process.env.PORT; 
 
 
 app.post("/api/v1/signup", async (req, res) => {

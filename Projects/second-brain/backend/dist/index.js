@@ -193,11 +193,12 @@ app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(
     try {
         // @ts-ignore
         const userId = req === null || req === void 0 ? void 0 : req.userId;
-        const checkUser = yield db_1.userModel.findOne({ userId });
+        const checkUser = yield db_1.userModel.findOne({ _id: userId });
         if (!checkUser) {
             res.status(409).json({
                 message: "invalid credentials(token), please login again"
             });
+            return;
         }
         const response = yield db_1.contentModel.find({ userId: userId });
         if (!response) {
@@ -217,12 +218,29 @@ app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(
         });
     }
 }));
-app.delete("/api/v1/content", (req, res) => {
+app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { postId } = req.body;
+        //@ts-ignore
+        const userId = req === null || req === void 0 ? void 0 : req.userId;
+        const checkUser = yield db_1.contentModel.findOne({ _id: postId, userId: userId });
+        if (!checkUser) {
+            res.status(408).json({
+                message: "Post is not available"
+            });
+            return;
+        }
+        const deleteContent = yield db_1.contentModel.deleteOne({ _id: postId }, { new: true });
+        res.status(200).json({
+            message: "Content Deleted succesfully"
+        });
     }
     catch (error) {
+        res.status(500).json({
+            message: "Internal server error"
+        });
     }
-});
+}));
 app.post("/api/v1/brain/share", (req, res) => {
     try {
     }
@@ -235,6 +253,28 @@ app.post("/api/v1/brain/:shareLink", (req, res) => {
     catch (error) {
     }
 });
+app.get("/api/v1/me", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        //@ts-ignore
+        const userId = req === null || req === void 0 ? void 0 : req.userId;
+        if (!userId) {
+            res.status(404).json({
+                message: "User is not loggedIn, try again (token is missing)"
+            });
+            return;
+        }
+        else {
+            res.status(200).json({
+                message: "User is logged in"
+            });
+        }
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Internal Server error while validating token"
+        });
+    }
+}));
 app.listen(PORT, () => {
     console.log("App is running at port", PORT);
 });
