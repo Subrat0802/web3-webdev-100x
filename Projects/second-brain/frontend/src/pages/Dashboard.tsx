@@ -16,6 +16,8 @@ type ContentItem = {
 
 export const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [openShareModal, setOpenShareModal] = useState(false);
+  
   const [fullSidebar, setFullSidebar] = useState<boolean>(false);
   const [contentData, setContentData] = useState<ContentItem[]>([]);
 
@@ -54,27 +56,21 @@ export const Dashboard = () => {
     return () => clearTimeout(timeout);
   }, [contentData]);
 
+
   const handleButtonOne = () => {
     setOpenModal(!openModal);
   };
+
+
   const handleButtontwo = async () => {
-    try{
-      const resp = await axios.post(import.meta.env.VITE_BACKEND_URL + "/brain/share",{
-        
-      },{
-        withCredentials:true
-      })
-      console.log("SHARE LINK", resp);
-    }catch(error){
-      console.log("share error",error);
-    }
+    setOpenShareModal(!openShareModal);
   };
 
   return (
     <div className="min-h-screen bg-[#0F172A] overflow-hidden relative">
       <div className="absolute top-1 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[120px] translate-x-1/2" />
-      {openModal && <CreateContentModal setOpenModal={setOpenModal} />}
-
+      {openModal && <CreateContentModal setOpenModal={setOpenModal} openModal={openModal} setOpenShareModal={undefined} openShareModal={false}/>}
+      {openShareModal && <CreateContentModal setOpenShareModal={setOpenShareModal} openShareModal={openShareModal} setOpenModal={undefined} openModal={false}/>}
       {/* Header */}
       <Header
         buttonone="Add Content"
