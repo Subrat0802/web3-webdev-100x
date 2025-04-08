@@ -57,7 +57,18 @@ export const Dashboard = () => {
   const handleButtonOne = () => {
     setOpenModal(!openModal);
   };
-  const handleButtontwo = () => {};
+  const handleButtontwo = async () => {
+    try{
+      const resp = await axios.post(import.meta.env.VITE_BACKEND_URL + "/brain/share",{
+        
+      },{
+        withCredentials:true
+      })
+      console.log("SHARE LINK", resp);
+    }catch(error){
+      console.log("share error",error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0F172A] overflow-hidden relative">
