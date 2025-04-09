@@ -25,7 +25,7 @@ export const PostCard = ({ title, link, type, id, fecthContent }: cardProps) => 
   }
 
   return (
-    <div className="rounded-2xl bg-slate-800 border border-slate-700 shadow-md hover:shadow-blue-500/30 transition-shadow duration-300 p-3 w-full md:w-[350px]">
+    <div className="rounded-2xl  bg-slate-900/80 border border-white/10 shadow-lg hover:shadow-blue-500/30 transition-shadow duration-300 p-3 w-full md:w-[350px]">
       {/* Media */}
       <div className="rounded-xl overflow-hidden mb-3">
         {type === "youtube" && (

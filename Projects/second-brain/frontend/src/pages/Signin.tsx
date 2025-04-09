@@ -24,7 +24,9 @@ export const SignIn = () => {
           withCredentials: true
         })
 
-        if(response.statusText === "OK"){
+        console.log("response signin", response);
+
+        if(response.status === 200){
           console.log("SIGNIN RESPOSNE", response);
           navigate("/dashboard");
         }

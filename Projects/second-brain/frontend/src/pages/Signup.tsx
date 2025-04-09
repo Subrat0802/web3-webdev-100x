@@ -15,31 +15,34 @@ export const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    try {
-      
-      const username = nameRef.current?.value;
-      const email = emailRef.current?.value;
-      const password = passRef.current?.value;
-      const confirmPassword = conPassRef.current?.value;
-      // console.log("csacsa",import.meta.env.VITE_BACKEND_URL);
-      const resposne = await axios.post(import.meta.env.VITE_BACKEND_URL + "/signup", {
-        username,
-        email, 
-        password,
-        confirmPassword
-      });
-      console.log("RESPOSNE SIGNUP", resposne);
-      if(resposne.statusText=== "OK"){
-        navigate("/signin");
-      }else{
-        console.log("ERROR", resposne);
-        return;
-      }
+  try {
+    const username = nameRef.current?.value;
+    const email = emailRef.current?.value;
+    const password = passRef.current?.value;
+    const confirmPassword = conPassRef.current?.value;
 
-    } catch (error: any) {
-      console.error("SIGNUP ERROR", error.response?.data || error.message);
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/signup`,
+      {
+        username,
+        email,
+        password,
+        confirmPassword,
+      }
+    );
+
+    console.log("RESPOSNE SIGNUP", response);
+
+    if (response.status === 200) {
+      navigate("/signin"); 
+    } else {
+      console.log("ERROR", response);
     }
-  };
+  } catch (error: any) {
+    console.error("SIGNUP ERROR", error.response?.data || error.message);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-[#0F172A] overflow-hidden relative">

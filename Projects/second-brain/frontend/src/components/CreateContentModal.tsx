@@ -79,7 +79,7 @@ export const CreateContentModal = ({
       if (error.response?.status === 404) {
         const fallbackHash = error.response.data?.hash;
         if (fallbackHash) {
-          setLink(import.meta.env.VITE_BACKEND_URL + "/share/" + fallbackHash);
+          setLink(fallbackHash);
         }
       }
     }
@@ -203,12 +203,12 @@ export const CreateContentModal = ({
           </div>
 
           <div className="pt-2 flex gap-5">
-            <Button
+            {/* <Button
               onClick={handleClickGenerateLink}
               text="Generate Link"
               varient="primary"
               size="md"
-            />
+            /> */}
             {link && (
               <Button
                 onClick={handleCopyLink}
