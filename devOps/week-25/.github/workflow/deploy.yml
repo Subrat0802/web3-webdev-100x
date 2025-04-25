@@ -1,0 +1,35 @@
+name: Deploy Next.js App to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_key.pem
+          chmod 600 ~/.ssh/ec2_key.pem
+
+      - name: Rsync Project to EC2
+        run: |
+          rsync -avz -e "ssh -i ~/.ssh/ec2_key.pem -o StrictHostKeyChecking=no" ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/nextjs-app
+
+      - name: Build & Restart Next.js on EC2
+        run: |
+          ssh -i ~/.ssh/ec2_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            cd /home/ubuntu/nextjs-app
+            npm install
+            npm run build
+            pm2 delete next-app || true
+            pm2 start npm --name "next-app" -- start
+          EOF
