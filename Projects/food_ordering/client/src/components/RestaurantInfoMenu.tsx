@@ -18,11 +18,11 @@ const RestaurantInfoMenu = ({ data } : {data:RestaurantInfoProps}) => {
   return (
     <div className="flex flex-col px-3 ">
       <p className="text-xl font-bold py-5 mt-5">{name}</p>
-      <div className="w-full border mb-5 border-gray-300 dark:border-gray-500"></div>
+      <div className="w-full border mb-5 "></div>
       <div className="px-4">
-        <div className="w-full flex flex-col gap-1 border dark:border-gray-500 border-gray-200 text-[#272727] rounded-2xl shadow-2xl mt-2  px-6 py-4 ">
-          <div className="flex items-center text-lg dark:text-gray-300  font-bold ">
-            <div className="p-[3px] text-[13px] mr-1 rounded-full text-white bg-[#178B3E]">
+        <div className="w-full flex flex-col gap-1 border  rounded-2xl shadow-2xl mt-2  px-6 py-4 ">
+          <div className="flex items-center text-lg  font-bold ">
+            <div className="p-[3px] text-[13px] mr-1 rounded-full  bg-[#178B3E]">
               <IoIosStar />
             </div>
 
@@ -35,16 +35,16 @@ const RestaurantInfoMenu = ({ data } : {data:RestaurantInfoProps}) => {
               {cuisines.join(", ")}
             </p>
           </div>
-          <div className="font-semibold dark:text-gray-300 mt-2 text-sm flex flex-col gap-2">
+          <div className="font-semibold  mt-2 text-sm flex flex-col gap-2">
             <div className="flex gap-2 items-center ">
-              <div className="text-2xl text-gray-500">
+              <div className="text-2xl ">
                 <TiLocationOutline />
               </div>
               <p className="font-semibold ">Outlet</p>
-              <p className="text-gray-600 dark:text-gray-500">{locality}</p>
+              <p className="">{locality}</p>
             </div>
             <div className="flex gap-2 items-center ">
-              <div className="text-2xl text-gray-500">
+              <div className="text-2xl ">
                 <MdDeliveryDining />
               </div>
               <p>{sla.slaString}</p>

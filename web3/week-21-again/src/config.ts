@@ -6,6 +6,6 @@ export const config = createConfig({
   chains: [mainnet],
   connectors:[injected()],
 	  transports: {
-	    [mainnet.id]: http("https://eth-mainnet.g.alchemy.com/v2/X5PHPfGBYCUT44WA7oNOI5MawKteNihV"),
+	    [mainnet.id]: http(""),
   },
 })

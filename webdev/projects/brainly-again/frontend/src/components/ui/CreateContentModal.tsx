@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import CrossIcon from "../../icons/CrossIcon";
 import { InputBox } from "./InputBox";
 import Button from "./Button";

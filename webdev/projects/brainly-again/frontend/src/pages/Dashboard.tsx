@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PlusIcon } from "../icons/Plusicon";
 import Button from '../components/ui/Button'
 import { Shareicon } from "../icons/Shareicon";
