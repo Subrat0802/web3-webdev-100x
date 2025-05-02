@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const { dbConnect } = require("./config/db/database");
-const UserROuter = require("./routes/User");
+const UserRouter = require("./routes/User");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -10,8 +11,9 @@ const PORT = process.env.PORT || 4000;
 dbConnect();
 
 app.use(express.json());
+app.use(cookieParser());
 
-app.use("/api/v1/", UserROuter);
+app.use("/api/v1/", UserRouter);
 
 app.listen(PORT, () => {
     console.log(`App running on port number ${PORT}`)
