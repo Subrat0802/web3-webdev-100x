@@ -2,17 +2,19 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY ./packege.json ./packege.json
-COPY ./packege-lock.json ./packege-lock.json
+COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
 
 RUN npm install
 
 COPY . .
 
-ENV DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/postgres"
-
-RUN npx prisma migrate dev
+# Only generate Prisma client — do NOT run `migrate dev` here
 RUN npx prisma generate
+
 RUN npm run build
 
-CMD ["npm", start]
+EXPOSE 3000
+
+# Run migrations and then start the app inside docker-compose or an entrypoint script
+CMD ["npm", "run", "dev:docker"]
