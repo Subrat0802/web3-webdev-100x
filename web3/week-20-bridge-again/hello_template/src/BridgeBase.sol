@@ -7,7 +7,7 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { console } from "forge-std/console.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
-interface IBUSDT is IERC20 {
+interface IBUSDT {
     function mint(address _to, uint256 _amount) external;
     function burn(address _from, uint256 _amount) external;
 }

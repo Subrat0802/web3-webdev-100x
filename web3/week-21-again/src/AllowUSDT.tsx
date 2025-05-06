@@ -37,6 +37,8 @@ export function AllowUSDT() {
     })
   } 
 
+  console.log("kchbsa", data);
+
   return (
     <form onSubmit={submit}>
       <input name="tokenId" placeholder="69420" required />

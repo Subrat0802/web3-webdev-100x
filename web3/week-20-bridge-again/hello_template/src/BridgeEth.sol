@@ -27,9 +27,11 @@ contract BridgeETH is Ownable {
     }
 
     function withdraw(IERC20 _tokenAddress, uint256 _amount) public {
+        require(address(_tokenAddress) == tokenAddress);
         require(pendingBalance[msg.sender] >= _amount);
         pendingBalance[msg.sender] -= _amount;        
         _tokenAddress.transfer(msg.sender, _amount);
+        
     }
 
     function burnedOnOppositeChain(address userAccount, uint256 _amount) public onlyOwner {
