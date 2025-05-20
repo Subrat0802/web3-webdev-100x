@@ -262,3 +262,177 @@
 //----------------------------
 //Traits
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------youtube generics
+
+// fn main() {
+//   let list = vec![1,2,3,4,6];
+//   let list_2 = vec![1.4,2.7,3.6,4.0,6.9];
+//   let l = largest_f64(&list_2);
+//   let k = largest_i32(&list);
+//   println!("The largest number is {l} or {k}");
+// }
+
+// fn largest_i32(list: &[i32]) -> &i32 {
+//   let mut result = &list[0];
+
+//   for item in list{
+//     if item > result {
+//       result = item;
+//     }
+//   }
+
+//   result
+// }
+
+// fn largest_f64(list: &[f64]) -> &f64 {
+//   let mut result = &list[0];
+
+//   for item in list{
+//     if item > result {
+//       result = item;
+//     }
+//   }
+
+//   result
+// }
+
+
+//===========================
+
+// struct User {
+//   email: String
+// }
+// fn main() {
+//   let list = vec![1,2,3,4,6];
+//   let list_2 = vec![1.4,2.7,3.6,4.0,6.9];
+
+//   let users = vec![
+//     User {
+//       email: String::from("subrat@gmail.com")
+//     },
+//     User {
+//       email: String::from("subrat@gmail.com")
+//     }
+//   ]
+
+//   let l = largest(&list); //you can only pass arguments that can use operators and that is generics
+
+//   println!("The largest number is {l}");
+// }
+
+// fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
+//   let mut result = &list[0];
+
+//   for item in list{
+//     if item > result {
+//       result = item;
+//     }
+//   }
+
+//   result
+// }
+
+
+//---------------------------------------
+
+//use generics in structs
+
+// struct Point<T, U> {
+//   x: T,
+//   y: U
+// }
+// fn main(){
+//    let point_a = Point {x:20, y:3};
+//    let point_b = Point {x:2.2, y:5};
+// }
+
+
+
+
+
+//0------------
+// struct Point<T, U> {
+//   x: T,
+//   y: U
+// }
+
+// impl <T, U> Point<T, U> {
+//     fn new(x: T, y: U) -> Self{ 
+//       Self {x, y}
+//     }
+
+// }
+// fn main(){
+//    let point_a = Point::new(4, 5.5);
+//    let point_b = Point::new(4.8, 8);
+// }
+
+
+
+
+//----------------------------
+// struct Point<T, U> {
+//   x: T,
+//   y: U
+// }
+
+// impl <T, U> Point<T, U> {
+//     fn new(x: T, y: U) -> Self{ 
+//       Self {x, y}
+//     }
+
+// }
+
+// impl Point<f64, f64> {
+//     fn calculate_distance(&self) -> f64 {
+//       4.0
+//     }
+// }
+
+// fn main(){
+//    let point_a = Point::new(4, 5.5);
+//    let point_b = Point::new(4.8, 8.0);
+
+//    point_b.calculate_distance();
+// }
+
+
+
+//------------------------
+
+
+struct Point<T, U> {
+  x: T,
+  y: U
+}
+
+impl <T, U> Point<T, U> {
+    fn new(x: T, y: U) -> Self{ 
+      Self {x, y}
+    }
+
+    fn mixup<X, Y>(&self, point: Point<X, Y>){
+
+    }
+
+}
+
+
+
+fn main(){
+   let point_a = Point::new(4, 5.5);
+   let point_b = Point::new(4.8, 8.0);
+}
