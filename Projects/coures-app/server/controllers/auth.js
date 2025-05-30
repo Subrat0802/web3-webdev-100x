@@ -93,7 +93,7 @@ exports.signin = async (req, res) => {
       });
     }
 
-    const comparePassword = bcrypt.compare(
+    const comparePassword = await bcrypt.compare(
       password,
       checkExistingUser.password
     );
@@ -139,3 +139,13 @@ exports.signin = async (req, res) => {
     });
   }
 };
+
+
+// exports.verifyUser = async (req, res) => {
+//   try{
+//     const 
+
+//   }catch(erorr){
+
+//   }
+// }

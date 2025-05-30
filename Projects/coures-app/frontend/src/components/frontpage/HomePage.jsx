@@ -4,10 +4,11 @@ import { ratings } from "../../data/frontpageRating";
 import { coursesnamefp } from "../../data/coursesnamefp";
 import { coursefp } from "../../data/coursesfp";
 import { mentors } from "../../data/mentor";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
-    <div className="">
+    <div className="pt-24">
       {/* section one  */}
       <div className="flex flex-col w-10/12 mx-auto md:flex-row h-auto pb-8">
         <div className="w-full   md:w-[50%] flex justify-start items-center">
@@ -21,11 +22,11 @@ const HomePage = () => {
               Join thousands of learners and take your career to the next level
               with our expert-led courses.
             </p>
-            <Button
+            <Link to={"/profile"}><Button
               text={"Start Learning Now"}
               bgColor={"[#15CF74]"}
               primary={true}
-            />
+            /></Link>
           </div>
         </div>
         <div className=" w-full md:w-[50%] py-8 px-8 md:px-0 mt-8 md:mt-0 flex bg-yellow-400  justify-center items-center">    
