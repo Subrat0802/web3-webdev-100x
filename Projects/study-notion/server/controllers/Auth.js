@@ -204,7 +204,6 @@ exports.login = async (req, res) => {
             expiresIn:"24h"
         });
 
-        existingUser.token = token;
         existingUser.password = undefined;
 
         const options = {
