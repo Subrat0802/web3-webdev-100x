@@ -209,21 +209,48 @@
 
 
 
-use std::fmt::Display;
-#[derive(Debug)]
-struct  User {
-    username:String,
-    age:u32
-}
+// use std::fmt::Display;
+// #[derive(Debug)]
+// struct  User {
+//     username:String,
+//     age:u32
+// }
+
+// fn main() {
+//     let  u = User {
+//         username:String::from("Subrat"),
+//         age: 28
+//     };
+
+//     println!("{}", u.username);
+//     println!("{}", u.age);
+
+//     println!("{:?}", u);
+// }
+
+
+// //--------------------  copu clone macro
+// #[derive(Debug, Copy, Clone)]
+
+// struct User {
+//     is_male: bool,
+//     age: u32,
+//     name: String
+// }
+// fn main() {
+//     let u1 = User {
+//         is_male: true,
+//         age: 30,
+//         name: String::from("Subrat")
+//     };
+
+//     let u2: User = u1.clone();
+
+//     print!("{:?} {:?}", u1, u2);
+// }
+
+//-- 
+
 
 fn main() {
-    let  u = User {
-        username:String::from("Subrat"),
-        age: 28
-    };
-
-    println!("{}", u.username);
-    println!("{}", u.age);
-
-    println!("{:?}", u);
 }
