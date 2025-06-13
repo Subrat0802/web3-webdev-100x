@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Solana Flip Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+        <script src="https://unpkg.com/@solana/wallet-adapter-base@latest/lib/index.iife.min.js"></script>
+        <script src="https://unpkg.com/@solana/wallet-adapter-phantom@latest/lib/index.iife.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="wallet-section">
+                <button id="connect-wallet">Connect Wallet</button>
+                <div id="wallet-info"></div>
+            </div>
+            
+            <div class="game-section">
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="value" value="0.1" />
+                        0.1 SOL
+                    </label>
+                    <label>
+                        <input type="radio" name="value" value="0.2" />
+                        0.2 SOL
+                    </label>
+                    <label>
+                        <input type="radio" name="value" value="0.3" />
+                        0.3 SOL
+                    </label>
+                    <label>
+                        <input type="radio" name="value" value="0.4" />
+                        0.4 SOL
+                    </label>
+                    <label>
+                        <input type="radio" name="value" value="0.5" />
+                        0.5 SOL
+                    </label>
+                    <label>
+                        <input type="radio" name="value" value="0.6" />
+                        0.6 SOL
+                    </label>
+                </div>
+                <div id="selected-value">Selected bet: None</div>
+                <button id="flip-button" disabled>Flip</button>
+                <div id="game-result"></div>
+            </div>
+        </div>
+
+        <script>
+            let wallet = null;
+            let connection = null;
+            let selectedBet = null;
+
+            // Initialize Solana connection
+            async function initializeSolana() {
+                connection = new solanaWeb3.Connection(
+                    solanaWeb3.clusterApiUrl('devnet'),
+                    'confirmed'
+                );
+            }
+
+            // Connect wallet
+            async function connectWallet() {
+                try {
+                    if (!window.solana || !window.solana.isPhantom) {
+                        alert('Phantom wallet is not installed!');
+                        return;
+                    }
+
+                    const resp = await window.solana.connect();
+                    wallet = resp.publicKey;
+                    document.getElementById('wallet-info').textContent = `Connected: ${wallet.toString().slice(0, 4)}...${wallet.toString().slice(-4)}`;
+                    document.getElementById('flip-button').disabled = false;
+                } catch (err) {
+                    console.error('Error connecting wallet:', err);
+                    alert('Failed to connect wallet');
+                }
+            }
+
+            // Handle flip
+            async function handleFlip() {
+                if (!wallet || !selectedBet) {
+                    alert('Please connect wallet and select a bet amount');
+                    return;
+                }
+
+                try {
+                    // Generate random result (50/50 chance)
+                    const isWin = Math.random() > 0.5;
+                    const resultText = isWin ? 'You won!' : 'You lost!';
+                    const resultAmount = isWin ? selectedBet * 2 : 0;
+
+                    document.getElementById('game-result').textContent = 
+                        `${resultText} ${isWin ? `+${resultAmount} SOL` : `-${selectedBet} SOL`}`;
+
+                    // Here you would implement the actual SOL transfer logic
+                    // This would involve creating and sending a transaction
+                    // For now, we're just showing the result
+
+                } catch (err) {
+                    console.error('Error during flip:', err);
+                    alert('Error during flip');
+                }
+            }
+
+            // Event listeners
+            document.getElementById('connect-wallet').addEventListener('click', connectWallet);
+            document.getElementById('flip-button').addEventListener('click', handleFlip);
+
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            const selectedValueDisplay = document.getElementById('selected-value');
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        selectedBet = parseFloat(e.target.value);
+                        selectedValueDisplay.textContent = `Selected bet: ${selectedBet} SOL`;
+                    }
+                });
+            });
+            
+            // Initialize Solana connection when page loads
+            initializeSolana();
+        </script>
+    </body>
+</html>

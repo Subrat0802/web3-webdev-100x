@@ -257,7 +257,7 @@
 // fn main(){
 //     let str = String::from("Subrat");
 //     let len = get_length(str);
-
+ 
 //     println!("length of str is {len}");
 
 //     get_length(s1);
@@ -268,7 +268,7 @@
 //     str_len
 // }
 
-//---------------
+// ---------------
 
 // fn main(){
 //     let str = String::from("Subrat");
@@ -604,24 +604,24 @@
 
 
 
-fn main() {
-    let ans = find_first_a(String::from("subrat"));
+// fn main() {
+//     let ans = find_first_a(String::from("subrat"));
 
-    match ans {
-        None => print!("Value not found"),
-        Some(val) => print!("value is {}", val)
-    }
+//     match ans {
+//         None => print!("Value not found"),
+//         Some(val) => print!("value is {}", val)
+//     }
 
-}
+// }
 
-fn find_first_a(str: String) -> Option<u32> {
-    // numbe ror null
-    let mut index: u32 = 0;
-    for c in str.chars() {
-        index = index + 1;
-        if c == 'a'{
-            return Some(index);
-        }
-    }
-    None
-}
+// fn find_first_a(str: String) -> Option<u32> {
+//     // numbe ror null
+//     let mut index: u32 = 0;
+//     for c in str.chars() {
+//         index = index + 1;
+//         if c == 'a'{
+//             return Some(index);
+//         }
+//     }
+//     None
+// }

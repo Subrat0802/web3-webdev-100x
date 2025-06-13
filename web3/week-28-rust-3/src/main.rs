@@ -44,8 +44,6 @@
 // }
 //here both fn doing the same thing there is code duplicaton to prevent this we use generics
 
-
-
 // generic ------------------
 // fn main() {
 //     let s1 = sum(1.1, 2.2);
@@ -55,10 +53,9 @@
 //     print!("{}", s1);
 // }
 
-// fn sum<T>(a: T, b: T) -> T {  
+// fn sum<T>(a: T, b: T) -> T {
 //     return a + b;
 // }
-
 
 //-----------------
 //Traits ex.
@@ -74,7 +71,6 @@
 //     return a + b;
 // }
 
-
 // /----/.............
 
 // fn main() {
@@ -89,8 +85,6 @@
 // fn sum<T: std::ops::Add<Output = T>>(a: T, b: T) -> T {  //add traits
 //     return a + b;
 // }
-
-
 
 //------------------
 
@@ -112,12 +106,10 @@
 //     println!("{}", a);
 // }
 
-
 //---------------
 
-
 // fn main() {
-   
+
 //     print_variable(1);
 //     print_variable(1.0);
 //     print_variable(String::from("asdfds"));
@@ -127,9 +119,7 @@
 //     println!("{}", a);
 // }
 
-
 //================
-
 
 // fn main(){
 //     let x = biggest_element(2,3);
@@ -143,25 +133,14 @@
 //     return b;
 // }
 
-
-
-
-
-
-
-
-
-
-
-
 //---------------
 //generic over structs
-  //one
+//one
 // struct Rect<T> {
 //     width: T,
 //     height: T
 // }
- 
+
 //  // wrote saperate fns
 // impl  Rect<f32> {
 //     fn area(&self) -> f32 {
@@ -189,7 +168,6 @@
 //     print!("{}", r1.area());
 
 // }
-
 
 //-----------
 
@@ -219,7 +197,6 @@
 
 // }
 
-
 //---------------------------------
 // #[derive(Copy, Clone)]
 // struct Rect<T> {
@@ -242,8 +219,6 @@
 //     print!("{}", r.area());
 // }
 
-
-
 //-----------------------------
 // //generics over enum
 // fn main(){
@@ -256,24 +231,8 @@
 
 // }
 
-
-
-
 //----------------------------
 //Traits
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //--------------youtube generics
 
@@ -308,7 +267,6 @@
 
 //   result
 // }
-
 
 //===========================
 
@@ -345,7 +303,6 @@
 //   result
 // }
 
-
 //---------------------------------------
 
 //use generics in structs
@@ -359,10 +316,6 @@
 //    let point_b = Point {x:2.2, y:5};
 // }
 
-
-
-
-
 //0------------
 // struct Point<T, U> {
 //   x: T,
@@ -370,7 +323,7 @@
 // }
 
 // impl <T, U> Point<T, U> {
-//     fn new(x: T, y: U) -> Self{ 
+//     fn new(x: T, y: U) -> Self{
 //       Self {x, y}
 //     }
 
@@ -380,9 +333,6 @@
 //    let point_b = Point::new(4.8, 8);
 // }
 
-
-
-
 //----------------------------
 // struct Point<T, U> {
 //   x: T,
@@ -390,7 +340,7 @@
 // }
 
 // impl <T, U> Point<T, U> {
-//     fn new(x: T, y: U) -> Self{ 
+//     fn new(x: T, y: U) -> Self{
 //       Self {x, y}
 //     }
 
@@ -409,30 +359,216 @@
 //    point_b.calculate_distance();
 // }
 
-
-
 //------------------------
 
+// #[derive(Debug)]
+// struct Point<T, U> {
+//   x: T,
+//   y: U
+// }
 
-struct Point<T, U> {
-  x: T,
-  y: U
+// impl <T, U> Point<T, U> {
+//     fn new(x: T, y: U) -> Self{
+//       Self {x, y}
+//     }
+
+//     fn mixup<X, Y>(self, point: Point<X, Y>) -> Point<T, Y> {
+//       Point{
+//         x: self.x,
+//         y: point.y
+//       }
+//     }
+
+// }
+
+// fn main(){
+//    let point_a = Point::new(4, 5.5);
+//    let point_b = Point::new(4.8, 8.0);
+
+//    let point_c = point_a.mixup(point_b);
+//    print!("Point c = {point_c:?}");
+// }
+
+//---------------------lecture 28 again
+
+// use chrono::prelude::*;
+
+// fn main() {
+//    let utc = Utc::now();
+//    let local = Local::now();
+//    print!("{} {}", utc, local);
+// }
+
+//===============
+
+// use dotenv::dotenv;
+// use std::env;
+
+// fn main() {
+//   dotenv().ok();
+//   let var = env::var("REDIS_ADDRESS");
+
+//   match var {
+//     Ok(str) => println!("{}", str),
+//     Err(_err) => println!("{}", "Error while reading variable")
+//   }
+// }
+
+//--------------------
+
+// use dotenv::dotenv;
+// use std::env;
+
+// fn main() {
+//   dotenv().ok();
+//   let var = env::var("REDIS_ADDRESS").unwrap();
+//   println!("{}", var);
+// }
+
+//=--------------- Generics
+
+// fn main() {
+
+// }
+
+// fn sum_u32(a: u32, b:u32) -> u32 {
+//   a + b
+// }
+
+// fn sum_f32(a: f32, b:f32) -> f32 {
+//   a + b
+// }
+
+//----------------
+
+// fn main() {
+//   let a = 10;
+//   let b = 20;
+
+//   let res = sum(a, b);
+//   println!("{}", res);
+// }
+
+// fn sum<T: std::ops::Add<Output = T>>(a: T, b:T) -> T { //that is trait bound std::ops::Add<Output
+//   a + b
+// }
+
+//================
+
+// fn main() {
+//   let a = 10;
+//   let b = 20;
+
+//   let res = sum(a, b);
+
+// }
+
+// fn sum<T>(a: T, b:T){ //this will not print values because `T` doesn't implement `std::fmt::Display` there is T doesnt have display trait
+//   print!("{}", a);
+//   print!("{}", b);
+// }
+
+//----------------------
+
+// fn main() {
+//   let a = 10;
+//   let b = 20;
+
+//   let res = sum(a, b);
+
+// }
+
+// fn sum<T: std::fmt::Display>(a: T, b:T){ //now this will not show the error because we added the trait with genrics
+//   print!("{}", a);
+//   print!("{}", b);
+// }
+
+//----------------
+
+// struct User {
+//   username: String
+// }
+// fn main() {
+//   let u1 = User {
+//     username:String::from("Subrat")
+//   };
+//   let u2 = User {
+//     username:String::from("Mishra")
+//   };
+
+//   sum(1, 2); //this will work because number empliment the Display Trait
+//   sum(String::from("subrat"), String::from("mishra")); //this will work because String empliment the Display Trait
+
+//   sum(u1, u2); //this will show errro because User does not implement the Dispaly Trait
+
+// }
+
+// fn sum<T: std::fmt::Display>(a: T, b:T){ //this will not print values because `T` doesn't implement `std::fmt::Display` there is T doesnt have display trait
+//   print!("{}", a);
+//   print!("{}", b);
+// }
+
+//---------------------  Genrics over structs
+// struct Rect<T> {  ////genric struct
+//     width: T,
+//     height: T,
+// }
+
+// impl Rect<f32> {
+//     fn area(&self) -> f32 {
+//       return self.width * self.height
+//     }
+// }
+
+// impl Rect<u32> {
+//     fn area(&self) -> u32 {
+//       return self.width * self.height
+//     }
+// }
+
+
+
+// fn main() {
+//   let r = Rect {
+//     width: 10,
+//     height: 20
+//   };
+
+//   let r1 = Rect {
+//     width: 10.0,
+//     height: 30.9
+//   };
+
+//   println!("{}", r.area());
+//   println!("{}", r1.area());
+// }
+
+
+//--------------------
+
+#[derive(Copy, Clone)]
+struct Rect<T> {
+    width: T,
+    height: T,
 }
 
-impl <T, U> Point<T, U> {
-    fn new(x: T, y: U) -> Self{ 
-      Self {x, y}
+impl<T: std::ops::Mul<Output = T> + Copy> Rect<T> {
+    fn area(&self) -> T {
+      return self.width * self.height
     }
-
-    fn mixup<X, Y>(&self, point: Point<X, Y>){
-
-    }
-
 }
 
+fn main() {
+  let r = Rect {
+    width: 10,
+    height: 20
+  };
 
+  let r1 = Rect {
+    width: 10.0,
+    height: 30.9
+  };
 
-fn main(){
-   let point_a = Point::new(4, 5.5);
-   let point_b = Point::new(4.8, 8.0);
+  println!("{}", r.area());
+  println!("{}", r1.area());
 }

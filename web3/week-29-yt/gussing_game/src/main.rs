@@ -510,18 +510,15 @@
 //     s.len()
 // }
 
-
 //------------
 
 // fn main() {
 //     let mut s1 = String::from("subrat");
 //     let s2 = &mut s1;
-   
+
 //     s2.push_str("Bye");
 
 // }
-
-
 
 // fn main() {
 //     let mut s = String::from("Subrat");
@@ -537,10 +534,7 @@
 
 // }
 
-
-
 // -----------lecture 9 Slice ---------\
-
 
 // fn main(){
 //     let s = String::from("hello world");
@@ -560,12 +554,11 @@
 //     s.len()
 // }
 
-
 //------------------------
 
 // fn main(){
 //     let mut s = String::from("hello world");
-    
+
 //     let hello = &s[0..5];
 //     let world = &s[6..11];
 
@@ -576,16 +569,15 @@
 // }
 
 // fn find_first_word(input: &String) -> usize {
-    let s = input.as_bytes();
+//     let s = input.as_bytes();
 
-    for(i, &item) in s.iter().enumerate(){
-        if item == b' ' {
-            return i;
-        }
-    }
-    s.len()
-}
-
+//     for(i, &item) in s.iter().enumerate(){
+//         if item == b' ' {
+//             return i;
+//         }
+//     }
+//     s.len()
+// }
 
 //---------------------
 
@@ -606,3 +598,637 @@
 //     }
 //     &input[..];
 // }
+
+//---------------lecture 10 Structs ---------------
+
+// struct User {
+//     active: bool,
+//     username: String,
+//     email: String,
+//     sign_in_count: u64,
+// }
+// fn main() {
+//     let mut user1 = User {
+//         active: true,
+//         username: String::from("someusername123"),
+//         email: String::from("someone@example.com"),
+//         sign_in_count: 1,
+//     };
+
+//     // println!("user name is {}",user1.username);
+
+//     user1.username = String::from("Something new");
+//     user1.username.push_str("hey");
+//     println!("user name is {}",user1.username);
+
+// }
+
+//-------------------------------
+
+// fn main() {
+//     let mut user1 = User {
+//         active: true,
+//         username: String::from("someusername123"),
+//         email: String::from("someone@example.com"),
+//         sign_in_count: 1,
+//     };
+
+//     let s1 = user1.username; //move the value to s1
+//     println!("the new username is {}", user1.username); //does not move because value is in the heap
+//     println!("the new username is {}", user1.active); //it print because value in stack
+
+// }
+
+//---------------------------
+
+// fn main() {
+//     let mut user1 = User {
+//         active: true,
+//         username: String::from("someusername123"),
+//         email: String::from("someone@example.com"),
+//         sign_in_count: 1,
+//     };
+
+//     let s1 = user1.username; //move the value to s1
+//     user1.username = String::from("this is a value");
+
+//     println!("value of username is {}", user1.username);
+// }
+
+// //--------------
+// fn main() {
+//     let mut user1 = User {
+//         active: true,
+//         username: String::from("someusername123"),
+//         email: String::from("someone@example.com"),
+//         sign_in_count: 1,
+//     };
+//     let user2 = User {
+//         email: String::from("anothcvsder@example.com"),
+//         active: false,
+//         ..user1
+//     };
+
+//     println!("value of user1 {}", user1.username); //we can not use because value move to user2
+
+// }
+
+//------------------
+
+// fn main() {
+//     let red = (100, 0, 0);
+//     set_bg_color(red);
+
+//     let point = (30, 40, 50);
+//     move_point(point);
+// }
+
+// fn set_bg_color(color: (u8, u8, u8)) {
+//     println!("Setting bg color R={}, G={}, B={}", color.0, color.1, color.2);
+// }
+
+// fn move_point(point: (u8, u8, u8)) {
+//     println!("the cursor X={}, Y={}, Z={}", point.0, point.1, point.2);
+// }
+
+//--------------
+
+// struct Point(u8, u8, u8);
+// struct Color(u8, u8, u8);
+
+// fn main() {
+//     let red = Color(100, 0, 0);
+//     set_bg_color(red);
+
+//     let point = Point(30, 40, 50);
+//     move_point(point);
+// }
+
+// fn set_bg_color(color: Color) {
+//     println!(
+//         "Setting bg color R={}, G={}, B={}",
+//         color.0, color.1, color.2
+//     );
+// }
+
+// fn move_point(point: Point) {
+//     println!("the cursor X={}, Y={}, Z={}", point.0, point.1, point.2);
+// }
+
+//-------------------
+
+// struct Point(u8, u8, u8);
+// struct Color(u8, u8, u8);
+
+// fn main() {
+//     let red = Color(100, 0, 0);
+//     set_bg_color(red);
+
+//     let point = Point(30, 40, 50);
+//     move_point(point);
+// }
+
+// fn set_bg_color(color: Color) {
+//     println!(
+//         "Setting bg color R={}, G={}, B={}",
+//         color.0, color.1, color.2
+//     );
+// }
+
+// fn move_point(point: Point) {
+//     println!("the cursor X={}, Y={}, Z={}", point.0, point.1, point.2);
+// }
+
+// //-------------lecture 11 Structs -------------
+// fn main() {
+//     let width1 = 30;
+//     let height1 = 50;
+
+//     println!(
+//         "The area of the rectangle is {} square pixels.",
+//         area(width1, height1)
+//     );
+// }
+
+// fn area(width: u32, height: u32) -> u32 {
+//     width * height
+// }
+
+//--------------------
+
+// fn main() {
+//     let rect = (30, 40);
+
+//     let res = area(rect);
+
+//     println!(
+//         "The area of the rectangle is {} square pixels.", res
+//     );
+// }
+
+// fn area(dimension: (u32, u32)) -> u32 {
+//     let (width, height) = dimension;
+//     width * height
+// }
+
+//-------------------
+
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+
+//     let res = area(rect);
+
+//     println!(
+//         "The area of the rectangle is {} square pixels.", res
+//     );
+// }
+
+// fn area(rect: Rectangle) -> u32 {
+
+//     rect.width * rect.height
+// }
+
+//----------------------
+
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+
+//     let res = area(&rect);
+
+//     println!(
+//         "The area of the rectangle is {} square pixels.", res
+//     );
+// }
+
+// fn area(rect: &Rectangle) -> u32 {
+
+//     rect.width * rect.height
+// }
+
+//-----------------------
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+
+//     let res = area(&rect);
+
+//     println!(
+//         "The area of the rectangle is {:#?} {} square pixels.",rect, res
+//     );
+// }
+
+// fn area(rect: &Rectangle) -> u32 {
+
+//     rect.width * rect.height
+// }
+
+//---------------
+
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+
+//     let res = area(&rect);
+
+//     println!(
+//         "The area of the rectangle is  {} square pixels.", res
+//     );
+
+//     dbg!(&rect);
+// }
+
+// fn area(rect: &Rectangle) -> u32 {
+
+//     rect.width * rect.height
+// }
+
+//-----------------lecture 12 syntax method ============
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+
+// impl Rectangle {
+//     fn area(&self) -> u32{
+//         self.height * self.width
+//     }
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+
+//     println!(
+//         "The area of the rectangle is  {} square pixels.", rect.area()
+//     );
+
+//     dbg!(&rect);
+// }
+
+//------------------
+
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+
+// impl Rectangle {
+//     fn area(&self) -> u32{
+//         self.height * self.width
+//     }
+
+//     fn can_hold(&self, other: &Rectangle) -> bool {
+//         self.width >= other.width && self.height >= other.height
+//     }
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+//     let rect1 = Rectangle { width: 10, height: 20 };
+
+//     println!(
+//         "can rect hold rect1 {}.", rect.can_hold(&rect1));
+// }
+
+//----------------
+
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32
+// }
+
+// impl Rectangle {
+//     fn area(&self) -> u32{
+//         self.height * self.width
+//     }
+
+//     fn can_hold(&self, other: &Rectangle) -> bool {
+//         self.width >= other.width && self.height >= other.height
+//     }
+// }
+// fn main() {
+//     let rect = Rectangle { width: 32, height: 40 };
+//     let rect1 = Rectangle { width: 10, height: 20 };
+
+//     println!(
+//         "can rect hold rect1 {}.", rect.can_hold(&rect1));
+// }
+
+//----------------lecture 13 enum---------
+
+// #[derive(Debug)]
+// enum IpAddKind {
+//     v4,
+//     v6
+// }
+
+// fn main() {
+//     route("subrat", IpAddKind::v4);
+// }
+
+// fn route (ip :&str, kind: IpAddKind) {
+//     println!("ROuting request to Ip {ip} of kind {kind:#?}");
+// }
+
+//----------------
+
+// #[derive(Debug)]
+// enum IpAddKind {
+//     v4,
+//     v6
+// }
+
+// struct IpAddress {
+//     address: String,
+//     kind: IpAddKind
+// }
+
+// fn main() {
+//     let google_address = IpAddress {
+//         address: String::from("1.2.3.4"),
+//         kind: IpAddKind::v4
+//     };
+//     route(google_address);
+// }
+
+// fn route (ip: IpAddress) {
+//     println!("Routing request to Ip {} of kind {:?}", ip.address, ip.kind);
+// }
+
+//----------------------
+
+// #[derive(Debug)]
+// enum IpAddKind {
+//     v4,
+//     v6
+// }
+
+// struct IpAddress {
+//     address: String,
+//     kind: IpAddKind
+// }
+
+// impl IpAddress {
+//     fn new(address: &str) -> Self {
+//         Self {
+//             address: address.to_string(),
+//             kind: IpAddKind::v4
+//         }
+//     }
+// }
+
+// fn main() {
+//     let google_address = IpAddress::new("1.3.4.2");
+//     route(google_address);
+// }
+
+// fn route (ip: IpAddress) {
+//     println!("Routing request to Ip {} of kind {:?}", ip.address, ip.kind);
+// }
+
+//------------------------
+
+// #[derive(Debug)]
+// enum IpAddKind {
+//     v4,
+//     v6
+// }
+
+// struct IpAddress {
+//     address: String,
+//     kind: IpAddKind
+// }
+
+// impl IpAddress {
+//     fn new(address: &str) -> Self {
+//         Self {
+//             address: address.to_string(),
+//             kind: IpAddKind::v4
+//         }
+//     }
+// }
+
+// fn main() {
+//     let google_address = IpAddress::new("1.3.4.2");
+//     let loopback = IpAddress::new("124.123.0.0");
+//     route(google_address);
+//     route(loopback);
+// }
+
+// fn route (ip: IpAddress) {
+//     println!("Routing request to Ip {} of kind {:?}", ip.address, ip.kind);
+// }
+
+//=============
+
+// #[derive(Debug)]
+// enum IpAddKind {
+//     v4(String),
+//     v6(String)
+// }
+
+// fn main() {
+//     let home = IpAddKind::v4(String::from("123.4.23.2"));
+
+//     route(home);
+// }
+
+// fn route (ip: IpAddKind) {
+//     println!("ROuting {:?}", ip)
+// }
+
+//------------------------
+
+// #[derive(Debug)]
+// enum IpAddKind {
+//     v4(String),
+//     v6(String)
+// }
+
+// fn main() {
+//     let home = IpAddKind::v4(String::from("123.4.23.2"));
+
+//     route(home);
+// }
+
+// fn route (ip: IpAddKind) {
+//     println!("Routing {:?}", ip)
+// }
+
+//------------
+
+// enum Message {
+//     Quit,
+//     Move {x:i32, y:i32},
+//     Wrie(String),
+//     ChanngeColor(i32, i32, i32)
+// }
+
+// fn main() {
+
+// }
+
+//----------------lecture 14 match control flow operator
+// #[derive(Debug)]
+// enum UsState {
+//     Albama,
+//     Alaska
+// }
+// enum Coin {
+//     Penny,
+//     Nickel,
+//     Dime,
+//     Quarter(UsState),
+// }
+
+// fn main() {
+//     let coin = Coin::Penny;
+//     println!("Value is {}", value_in_cent(coin));
+// }
+
+// fn value_in_cent(coin: Coin) -> u8 {
+//     match coin {
+//         Coin::Penny => 1,
+//         Coin::Nickel => 5,
+//         Coin::Dime => 10,
+//         Coin::Quarter(UsState::Alaska) => {
+//             println!("Hello from alsaka");
+//             25
+//         }
+//         Coin::Quarter(state) => {
+//             println!("Got Q of value {:?}", state);
+//             25
+//         }
+//     }
+// }
+
+//----------------
+
+// #[derive(Debug)]
+// enum UsState {
+//     Albama,
+//     Alaska
+// }
+// enum Coin {
+//     Penny,
+//     Nickel,
+//     Dime,
+//     Quarter(UsState),
+// }
+
+// fn main() {
+//     let coin = Coin::Quarter(UsState::Albama);
+//     println!("Value is {}", value_in_cent(coin));
+// }
+
+// fn value_in_cent(coin: Coin) -> u8 {
+//     match coin {
+//         Coin::Penny => 1,
+//         Coin::Nickel => 5,
+//         Coin::Dime => 10,
+//         Coin::Quarter(UsState::Alaska) => {
+//             println!("Hello from alsaka");
+//             25
+//         }
+//         Coin::Quarter(state) => {
+//             println!("Got Q of value {:?}", state);
+//             25
+//         }
+//     }
+// }
+
+//-----------------
+
+// #[derive(Debug)]
+// enum UsState {
+//     Albama,
+//     Alaska
+// }
+// enum Coin {
+//     Penny,
+//     Nickel,
+//     Dime,
+//     Quarter(UsState),
+// }
+
+// fn main() {
+//     let coin = Coin::Quarter(UsState::Albama);
+//     println!("Value is {}", value_in_cent(coin));
+
+//     println!("Add res = {}", add(50, Some(30)));
+// }
+
+// fn add(num: i32, num2: Option<i32>) -> i32 {
+//     match num2 {
+//         Some(i) => num + i,
+//         None => num
+//     }
+// }
+
+// fn value_in_cent(coin: Coin) -> u8 {
+//     match coin {
+//         Coin::Penny => 1,
+//         Coin::Nickel => 5,
+//         Coin::Dime => 10,
+//         Coin::Quarter(UsState::Alaska) => {
+//             println!("Hello from alsaka");
+//             25
+//         }
+//         Coin::Quarter(state) => {
+//             println!("Got Q of value {:?}", state);
+//             25
+//         }
+//     }
+// }
+
+//------------------
+
+// fn main() {
+//     let dice_roll = 6;
+//     match dice_roll {
+//         3 => println!("You got a fancy number"),
+//         6 => println!("Your fancy numbert is 6"),
+//         other => println!("Mpve {other} steps")
+//     }
+// }
+
+// //---------------if let syntax lecture 15
+
+// fn main() {
+//     let config_max = Some(3u8);
+//     match config_max {
+//         Some(max) => println!("The maximum is configured to be {max}"),
+//         _ => (),
+//     }
+// }
+
+
+//--------------lecture 16 
+
+use gussing_game::authenticate;
+use gussing_game::auth_utils::models::Credentials;
+
+fn main() {
+    let cred = Credentials{
+        username: String::from("subrat"),
+        password: String::from("subrat@123")
+    };
+
+    authenticate(cred);
+}
