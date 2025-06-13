@@ -1,33 +1,22 @@
 const mongoose = require("mongoose");
 
+// Define the Profile schema
 const profileSchema = new mongoose.Schema({
-    gender:{
-        type:String
-    },
-    datofBirth:{
-        type:String
-    },
-    about:{
-        type:String,
-        trim:true
-    },
-    contactNumber:{
-        type:Number,
-        trim:true
-    },
-    address:{
-        type:String,
-        trim:true
-    },
-    pincode:{
-        type:Number,
-        trim:true
-    },
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-    }
-},{timestamps:true})
+	gender: {
+		type: String,
+	},
+	dateOfBirth: {
+		type: String,
+	},
+	about: {
+		type: String,
+		trim: true,
+	},
+	contactNumber: {
+		type: Number,
+		trim: true,
+	},
+});
 
-const Profile = mongoose.model("Profile", profileSchema);
-module.exports = Profile;
+// Export the Profile model
+module.exports = mongoose.model("Profile", profileSchema);
