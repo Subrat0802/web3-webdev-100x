@@ -1,0 +1,31 @@
+# Rust target directory
+/target/
+
+# Build artifacts
+**/*.rs.bk
+
+# Executables
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test results
+*.log
+
+# IDE and editor settings
+**/*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# By Cargo
+Cargo.lock

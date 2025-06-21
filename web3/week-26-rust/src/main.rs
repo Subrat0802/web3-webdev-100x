@@ -158,19 +158,117 @@
 //     return x % 2 == 0;
 // }
 
-fn main() {
-    let str = String::from("harkirat singh");
-    println!("First name {}", get_first_name(str))
+// fn main() {
+//     let str = String::from("harkirat singh");
+//     println!("First name {}", get_first_name(str))
     
+// }
+
+// fn get_first_name(str: String) -> String {
+//     let mut fristname = String::from("");
+//     for i in str.chars() {
+//         if i == ' ' {
+//             break;
+//         }
+//         fristname.push(i)
+//     }
+//     return fristname;
+// }
+
+
+
+
+// revision   
+
+// fn main() {
+//     println!("hello world");
+//     let ans = 34;
+//     println!("{}", ans);
+//     println!("{}", is_even(ans));
+//     let x = ans;
+//     println!("{}", x);
+//     let y = x+2;
+//     println!("{}", y);
+// }
+
+// fn is_even(a: i32) -> bool {
+//     return a%2 == 0;
+// }
+
+
+//-----------------
+
+// fn main() {
+//     let mut num = vec![1,2,3];
+//     println!("{:?}", num);
+//     num.push(5);
+//     println!("{:?}", num);
+// }
+
+//-----------------
+
+// fn main(){
+//     let x = 1;
+//     println!("{}", x);
+// }
+
+//===========
+
+// fn main() {
+//     let is_male = true;
+//     let is_above_19 = true;
+
+//     if is_male {
+//         println!("Youre male");
+//     }else{
+//         println!("youre not male")
+//     }
+//     if is_male && is_above_19 {
+//         println!("youre legal male");
+//     }
+    
+// }
+
+
+//-----------------
+
+
+// fn main() {
+//     let greeting = String::from("Subrat");
+//     println!("{}", greeting);
+// }
+
+//--------------
+
+// fn main() {
+//     let arr = [1,2,34,5,6];
+//     println!("{:?}", arr);
+// }
+
+
+//--------fn m
+
+// fn main() {
+//     let mut x = vec![1,2,34,5,6];
+//     x.push(20);
+//     println!("{:?}", x);
+// }
+
+//------------------
+
+
+
+pub fn main() {
+    let x = 10;
+    let is_even = is_even(x);
+
+    if is_even {
+        println!("{}", "is even");
+    }else {
+        println!("{}", "is odd");
+    }
 }
 
-fn get_first_name(str: String) -> String {
-    let mut fristname = String::from("");
-    for i in str.chars() {
-        if i == ' ' {
-            break;
-        }
-        fristname.push(i)
-    }
-    return fristname;
+fn is_even(x: i32) -> bool {
+    return x%2 == 0;
 }
