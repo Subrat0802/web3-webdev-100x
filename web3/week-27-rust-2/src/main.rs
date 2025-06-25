@@ -1181,3 +1181,69 @@
 //     println!("{}", square.area());
 // }
 
+//---------------------
+
+//ERROR HANDLING
+
+// use std::fs;
+
+// fn main() {
+//     let contents = fs::read_to_string("a.txt");
+
+//     match contents {
+//         Ok(contents) => println!("{}", contents),
+//         Err(e) => println!("Error while reading file"),
+//     }
+// }
+
+
+//--------------
+
+//Option error handling
+//we have created our option enum that is for understanding
+// enum Option {
+//     Some(u32),
+//     None
+// }
+// fn main() {
+//     let ans = find_first_a(String::from("subrat"));
+
+//     match ans {
+//         Option::None => println!("Value not found"),
+//         Option::Some(val) => println!("{}", val)
+//     }
+// }
+// fn find_first_a(str: String) -> Option { //if in this string there is no a then it 
+//     //will return undefined and nul in js but in rust it will return something option of u32
+
+//     return Option::Some(1);
+//     return Option::None
+
+// }
+
+
+
+
+//-----------------------
+
+fn main() {
+    let ans = find_first_a(String::from("subrat"));
+
+    match ans {
+        Option::None => println!("Value not found"),
+        Option::Some(val) => println!("{}", val)
+    }
+}
+fn find_first_a(str: String) -> Option<u32> { //that is something that rust provides for option error 
+    //this will return either number or none, Option::None, Option::Some
+    let mut index = 0;
+    for c in str.chars() {
+        index = index + 1;
+        if c=='a'{
+            return Some(index);
+        }
+    }
+    None
+}
+
+
