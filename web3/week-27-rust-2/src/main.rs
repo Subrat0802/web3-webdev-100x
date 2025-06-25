@@ -625,3 +625,559 @@
 //     }
 //     None
 // }
+
+
+
+//----------------
+
+
+// fn main() {
+//     let str = String::from("Subrat");
+//     let (str, len) = get_len(str);
+//     println!("{} {}", str, len);
+// }
+
+// fn get_len(str: String) -> (String, usize) {
+//     let len =  str.len();
+//     return (str, len);
+// }
+
+//----------------------
+
+// fn main() {
+//     let str = String::from("subrat");
+//     let len = get_len(&str);
+//     println!("{} {}", str, len);
+// }
+
+// fn get_len(str: &String) -> usize {
+//     str.len()
+// }
+
+
+//------------------------------------
+
+// fn main() {
+//     let mut str = String::from("subrat");
+//     let name = &mut str;
+//     name.push_str("mishra");
+//     println!("{}", str);
+// }
+
+//=----------------
+
+// fn main() {
+//     let mut str = String::from("subrat");
+//     let name = &mut str;
+//     name.push_str(" mishra");
+//     let name2 = &mut str;
+
+//     println!("{}", name2);
+// }
+
+
+//------------------
+
+
+// fn main() {
+//     let str = String::from("subrat mishra");
+//     println!("{} {}", str, get_len(&str));
+// }
+
+// fn get_len(str: &String) -> usize {
+//     str.len()
+// }
+
+
+//-----------------------
+
+// fn main() {
+//     let mut name = String::from("subrat");
+//     println!("{}", get_full_name(&mut name));
+// }
+// fn get_full_name(str: &mut String) -> &String {
+//     str.push_str("mishra");
+//     str
+// }
+
+//-----------------
+
+// fn main() {
+//     let mut str = String::from("subrat");
+//     println!("{}", get_full_name(&mut str));
+// }
+// fn get_full_name(str: &mut String) -> &String {
+//     str.push_str(" mishra");
+//     str
+// }
+
+
+//=================
+
+// fn main(){
+//     let str = String::from("Subrat");
+//     let mut _str2 = &str;
+//     let _str3: &String = &str;
+
+//     println!("{} {}", _str2, _str3);
+// }
+
+
+//--------------------
+
+// fn main() {
+//     let mut str = String::from("Harkirat");
+//     let ref1 = &mut str;
+//     ref1.push_str("Singh"); //mut variable ends
+//     //----------- after that ref1 will not in use, ""So this code will work, even there is two variable that borrow another variable {mut},
+//     //-----------
+//     // let ref2: &mut String = &mut str;
+
+//     println!("{}", ref1); //this code will run
+// }
+
+
+
+//-----------------
+
+// struct Rect {
+//     height: f32,
+//     width: f32
+// }
+
+// impl Rect {
+//     fn area(&self) -> f32 {
+//         return self.height * self.width;
+//     }
+//     fn add(&self) -> f32 {
+//         return self.height + self.width;
+//     } 
+// }
+
+// fn main() {
+//     let r = Rect {
+//         height:1.2,
+//         width:3.2
+//     };
+
+//     println!("{} {}", r.width, r.height);
+//     println!("{} {}", r.area(), r.add());
+// }
+
+
+//-------------
+
+// struct Rect {
+//     height: f32,
+//     width: f32
+// }
+
+// impl Rect {
+//     fn area(&self) -> f32 {
+//         return self.width * self.height;
+//     }
+//     fn print(){
+//         println!("Hello world")
+//     }
+// }
+
+// fn main() {
+//     let rect = Rect {
+//         height:3.3,
+//         width:2.2
+//     };
+
+//     println!("{}",rect.area());
+//     println!("{} {}", rect.width, rect.height);
+//     Rect::print();
+
+// }
+
+//-------------
+
+//enum
+
+// enum Direction {
+//     North,
+//     West,
+//     East,
+//     South
+// }
+// fn main() {
+//     let my_dir = Direction::North;
+//     let new_dir = my_dir;
+//     println!("{}", new_dir);
+// }
+
+
+
+
+
+
+
+//-again+++++++++++++++############################
+
+//OWNERSHIP
+
+// fn main() {
+//     let str = String::from("Subrat");
+//     let len = get_len(str);
+//     println!("{}", len);
+
+//     println!("{}", str) //i can use str now here because ownership goes to get_len fn 
+// }
+// fn get_len(str:String) -> usize {
+//     return str.len();
+// }
+
+
+//---------------
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     str.push_str((" mishra"));
+//     let len = get_len(str);
+//     println!("{}", len);
+
+//     // println!("{}", str) //i can use str now here because ownership goes to get_len fn 
+// }
+// fn get_len(str:String) -> usize {
+//     return str.len();
+// }
+
+
+//-------------------
+
+// fn main() {
+//     let str = String::from("Subrat");
+//     let (len, str) = get_len(str);
+//     println!("{}", len);
+
+//     println!("{}", str) //now you can use the variable again
+// }
+// fn get_len(str:String) -> (usize, String) {  //return str back
+//     return (str.len(), str);
+// }
+
+
+//-----------------------
+//BORROWING
+
+// fn main() {
+//     let str = String::from("Subrat");
+//     let len = get_len(&str);
+//     println!("{}", len);
+
+//     println!("{}", str);
+//     println!("{}", str);
+//     println!("{}", str);
+//     println!("{}", str);
+// }
+// fn get_len(str:&String) -> usize { //now get_len borrow the str not become owner of string 
+//     return str.len() ;
+// }
+
+
+//-----------------------
+
+//There can be various immutable referance 
+// //there can br only one mutable referance
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     str.push_str("Mishra");
+//     let str1 = &str;
+//     str1.push_str("from rewa"); //here str1 is not a mutable referance SHOW ERROR
+
+// }
+
+//----------------------
+
+
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     str.push_str("Mishra");
+//     let str1 = &mut str; //add mut here to make mutable variable
+//     str1.push_str("from rewa"); 
+// }
+
+
+//--------------------
+
+
+
+// fn main() {
+//     let str = String::from("Subrat");
+//     let str1 = &str;
+//     let str2 = &str;
+//     let str3 = &str;
+//     //HERE I HAVE MULTIPLE IMMUTABLE REFERANCE
+//     println!("{} {} {} {}", str, str1, str2, str3);  
+
+// }
+
+
+//----------------------
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     let str1 = &mut str; //if any one become mutable referance then it give error
+//     let str2 = &str; //this not work
+//     let str3 = &str; //this not work
+//     //HERE I HAVE MULTIPLE IMMUTABLE REFERANCE
+//     println!("{} {} {} {}", str, str1, str2, str3);  
+
+// }
+
+
+//-----------------
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     let str1 = &mut str; //if any one become mutable referance then it give error
+//     let str2 = &str; //this not work
+//     let str3 = &str; //this not work
+
+//     str1.push_str("bhopal"); //onlly this will work 
+
+//     println!("{} {} {} {}", str, str1, str2, str3);  
+
+// }
+
+
+//--------------------
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     let str1 = &mut str;
+
+//     str1.push_str(" hello"); //this code will work because here mut variable life span ends here ends
+
+//     let str2 = &str;
+
+//     println!("{}", str);
+//     println!("{}", str2); 
+
+// }
+   
+
+
+//----------------------------
+
+// fn main() {
+//     let mut str = String::from("Subrat");
+//     let str1 = &mut str;
+
+//     str1.push_str(" hello"); //this code will work because here mut variable life span ends here ends
+
+//     let str2 = &str;
+
+//     println!("{}", str);
+//     println!("{}", str2); 
+
+// }
+
+// /-------------
+
+
+// fn main() {
+//     let mut s1 = String::from("Subrat ");
+
+//     let s2 = &mut s1; //mutable referance
+//     s2.push_str("mishra");
+
+//     let s3 = &s1; //immutable referance
+//     let s4 = &s1; //immutable referance
+
+//     println!("{}, {}", s3 s4);
+
+
+
+// }
+
+
+//-------------------------
+
+//STRUCTS
+
+// struct Rect {
+//     width: f32,
+//     heigth: f32
+// }
+
+// fn main() {
+//     let r = Rect {
+//         width: 3.3,
+//         heigth: 4.4
+//     };
+
+//     println!("{}, {}", r.width, r.heigth);
+// }
+
+//----------------------
+
+
+// struct Rect {
+//     width: f32,
+//     heigth: f32
+// }
+
+// impl Rect {
+//     fn area(&self) -> f32 {
+//         return self.heigth * self.width;
+//     }
+//     fn perimeter(&self) -> f32 {
+//         return (self.width + self.heigth);
+//     }
+// }
+
+// fn main() {
+//     let r = Rect {
+//         width: 3.3,
+//         heigth: 4.4
+//     };
+//     println!("{}", r.area());
+//     println!("{}", r.perimeter());
+//     println!("{}, {}", r.width, r.heigth);
+// }
+
+//------------------
+
+
+// struct Rect {
+//     width: f32,
+//     heigth: f32
+// }
+
+// impl Rect {
+//     fn area(&self) -> f32 {
+//         return self.heigth * self.width;
+//     }
+//     fn perimeter(&self) -> f32 {
+//         return (self.width + self.heigth);
+//     }
+//     fn print_static_fn() { //this is static fn
+//         println!("Hello wolrd")
+//     }
+// }
+
+// fn main() {
+//     let r = Rect {
+//         width: 3.3,
+//         heigth: 4.4
+//     };
+//     println!("{}", r.area());
+//     println!("{}", r.perimeter());
+//     println!("{}, {}", r.width, r.heigth);
+//     Rect::print_static_fn(); //call the static fn 
+// }
+
+
+
+//------------------------------
+
+// ENUMS 
+
+// enum Direction {
+//     North,
+//     South, 
+//     East,
+//     West
+// }
+
+// fn main() {
+//     let dir = Direction::East;
+//     let d = dir;
+//     println!("{}", d); //need to add trait
+// }
+
+
+//----------------
+
+// use std::default;
+
+
+// enum Direction {
+//     North,
+//     South, 
+//     East,
+//     West
+// }
+
+// fn main() {
+//     let dir = Direction::South;
+ 
+//     steer(dir);
+// }
+
+// fn steer(dir: Direction) {
+//     match dir {
+//         Direction::East => print!("East direction"),
+//         Direction::West => print!("West direction"),
+//         _ => println!("Vertical direction")
+//     }
+// }
+
+
+//--------------------------------
+
+// use std::{default, f32::consts::PI};
+
+// //ENUM can also store values
+// enum Shape {
+//     Square(f32),
+//     Circle(f32),
+//     Rectangle(f32, f32)
+// }
+
+// fn main() {
+//     let square = Shape::Square(10.0);
+
+//     let circle = Shape::Circle(10.0);
+
+//     let rect = Shape::Rectangle(10.0, 12.4);
+
+//     let ans = area(circle);
+//     println!("{}", ans);
+// }
+// fn area(shape:Shape) -> f32 {
+//     return match shape {
+//         Shape::Circle(radius) => PI*radius*radius,
+//         Shape::Rectangle(width,height ) => width * height,
+//         Shape::Square(side) => side*side
+//     };
+// }
+
+
+//------------
+
+
+// //You can also implement fn top of enums    
+// use std::{default, f32::consts::PI};
+// enum Shape {
+//     Square(f32),
+//     Circle(f32),
+//     Rectangle(f32, f32)
+// }
+
+// impl Shape {
+//     fn area(&self) -> f32 {
+//         return match self {
+//         Shape::Circle(radius) => PI*radius*radius,
+//         Shape::Rectangle(width,height ) => width * height,
+//         Shape::Square(side) => side*side
+//     };
+//     }
+// }
+
+// fn main() {
+//     let square = Shape::Square(10.0);
+
+//     let circle = Shape::Circle(10.0);
+
+//     let rect = Shape::Rectangle(10.0, 12.4);
+
+//     println!("{}", square.area());
+// }
+
