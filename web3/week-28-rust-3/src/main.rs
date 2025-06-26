@@ -544,31 +544,449 @@
 // }
 
 
+// //--------------------
+
+// #[derive(Copy, Clone)]
+// struct Rect<T> {
+//     width: T,
+//     height: T,
+// }
+
+// impl<T: std::ops::Mul<Output = T> + Copy> Rect<T> {
+//     fn area(&self) -> T {
+//       return self.width * self.height
+//     }
+// }
+
+// fn main() {
+//   let r = Rect {
+//     width: 10,
+//     height: 20
+//   };
+
+//   let r1 = Rect {
+//     width: 10.0,
+//     height: 30.9
+//   };
+
+//   println!("{}", r.area());
+//   println!("{}", r1.area());
+// }
+
+
+
+//----------+++++++++++##########AGAIN
+//External packages
+// use chrono::{Utc, Local};
+
+// fn main() {
+//   let utc = Utc::now();
+//   let local = Local::now();
+//   println!("{}", utc);
+//   println!("{}", local);
+
+// } 
+
+
+//------------------
+
+
+// use std::env;
+
+// use dotenv::dotenv;
+
+// fn main() {
+//   dotenv().ok();
+
+
+//   //============
+//   // let var = env::var("REDIS");
+//   // match var {
+//   //   Ok(str) => println!("{}", str),
+//   //   Err(_e) => println!("Error while reading variable")
+//   // }
+//   //==============
+
+
+//   //-==============
+//   // let var = env::var("REDIS").unwrap(); //hoga heee if you are sure about it 
+//   // println!("{}", var);
+//   //=================
+
+
+//   //===============
+//   let var = env::var("REDIS");
+//   println!("{:?}", var);
+//   //================
+// } 
+
+
+
+
+//=======-----------------------
+//Generics
+// fn main(){
+
+// }
+
+// fn sum_u32(a:u32, b:u32) -> u32 {
+
+// }
+
+// fn sum_f32(a:f32, b:f32) -> f32 {
+
+// }
+
+//why we wrote same fn for sum just because of variable type f32 or u32.
+
+
+// //=--------------------------
+// fn main(){
+
+// }
+
+// fn sum_u32<T>(a:T, b:T) -> T {  //input is generic type
+//   return a+b;  //here throw an error because function get any type of argument it can be sstring bool anything thats why plus operator throw error
+
+// }
+
+
+
 //--------------------
 
-#[derive(Copy, Clone)]
-struct Rect<T> {
-    width: T,
-    height: T,
-}
 
-impl<T: std::ops::Mul<Output = T> + Copy> Rect<T> {
-    fn area(&self) -> T {
-      return self.width * self.height
-    }
-}
+// use std::ops::Add;
+// fn main(){
+//   print!("{}", sum_u32(1,3));
+// }
 
-fn main() {
-  let r = Rect {
-    width: 10,
-    height: 20
-  };
+// fn sum_u32<T: Add<Output = T>>(a:T, b:T) -> T {  //add trait to add number now fn know, add generics. but these generics cant be string they only be a numbers, because traits Ad cant wrote for strings
+//   return a+b; 
+// }
 
-  let r1 = Rect {
-    width: 10.0,
-    height: 30.9
-  };
 
-  println!("{}", r.area());
-  println!("{}", r1.area());
-}
+//-------------------
+
+
+
+// use std::ops::Add;
+
+// struct User  {
+//   name: String
+// }
+
+// fn main(){
+
+//   let user1 = User {
+//     name:String::from("Subrat")
+//   };
+//   let user2 = User {
+//     name:String::from("aman")
+//   };
+
+//   print!("{}", sum_u32(1,3));
+
+//   print!("{}", sum_u32(user1,user2)); //here we cant even pass user1 or user 2 because its struct hasent implement Add trait for the struct.
+// }
+
+// fn sum_u32<T: Add<Output = T>>(a:T, b:T) -> T {  //add trait to add number now fn know, add generics. but these generics cant be string they only be a numbers, because traits Ad cant wrote for strings
+//   return a+b; 
+// }
+
+
+//----------------------------------
+
+
+// use std::ops::Add;
+
+// fn main(){
+//   display_element(1,3); 
+// }
+
+// fn display_element<T: std::fmt::Display>(a:T, b:T) {  //Add here dispaly trait 
+
+//   println!("{}", a);  //error =>  `T` doesn't implement `std::fmt::Display` trait
+//   println!("{}", b);  //error =>  `T` doesn't implement `std::fmt::Display` trait
+
+// }
+
+
+//-============-----------
+
+// fn main(){
+//   display_element(1,3); 
+//   display_element(String::from("harkirath"),String::from("Mishra"));  //this will also works because string implents the dispaly trait
+// }
+
+// fn display_element<T: std::fmt::Display>(a:T, b:T) {  //Add here dispaly trait 
+
+//   println!("{}", a);  
+//   println!("{}", b);  
+
+// }
+
+
+
+//------------------------
+
+// struct User {
+//   username: String
+// }
+// fn main(){
+//   let u1 = User {
+//     username:String::from("Subrat")
+//   };
+//   let u2 = User {
+//     username:String::from("aman")
+//   };
+//   display_element(1,3); 
+//   display_element(String::from("harkirath"),String::from("Mishra"));  //this will also works because string implents the dispaly trait
+//   display_element(u1, u2); //this show error because for struct doesnt implemented the dispaly trait
+// }
+
+// fn display_element<T: std::fmt::Display>(a:T, b:T) {  //Add here dispaly trait 
+
+//   println!("{}", a);  
+//   println!("{}", b);  
+
+// }
+
+
+
+//-------------------------
+
+// fn main(){
+//   display_element(1,3); 
+//   display_element(String::from("harkirath"),String::from("Mishra"));  //this will also works because string implents the dispaly trait
+//  }
+
+// fn display_element<T: std::fmt::Display>(a:T, b:T) {  //Add here dispaly trait 
+
+//   println!("{}", a);  
+//   println!("{}", b);  
+
+// }
+
+
+
+//after ghode khull gaye
+
+// fn main() {
+//   let s = sum(1.1, 2.2); //this throw error because sum fun expects u32 or u32 but we pass f32 f32 float number 
+// }
+
+// fn sum(a: u32, b:u32) -> u32 {
+//   a+b
+// }
+
+
+//-------------------------
+
+// fn main() {
+//   let s = sum(1.1, 2.2); 
+//   let s1 = sum(1, 2); 
+//   let s2 = sum(1.1, 2.2);  
+// }
+
+// fn sum<T: std::ops::Add<Output = T>>(a: T, b:T) -> T { //bound to a specific trait
+//   a+b
+// }
+
+
+//--------------
+
+
+// fn main() {
+//   print_variable(12);
+//   print_variable(String::from("Subrat"));
+//   print_variable(10.22);
+// }
+// fn print_variable<T>(a:T) {  //`T` doesn't implement `std::fmt::Display`
+//   println!("{}", a); 
+// }
+
+
+//----------------------
+
+// fn main() {
+//   print_variable(12);
+//   print_variable(String::from("Subrat"));
+//   print_variable(10.22);
+// }
+// fn print_variable<T: std::fmt::Display>(a:T) {  //`T` doesn't implement `std::fmt::Display`
+//   println!("{}", a); 
+// }
+
+
+
+//-----------------------
+
+//Generics over structs
+ 
+// struct Rect {
+//   width: u32,
+//   height: u32
+// }
+
+// impl Rect {
+//     fn area(&self) -> u32 {
+//       self.width * self.height
+//     }
+// }
+ 
+// fn main() {
+//   let x = Rect {
+//     height: 10,
+//     width: 20
+//   };
+//   let x1 = Rect {  //this gives error because struct element types are u32 and we passong float numbers
+//     height: 2.4,
+//     width: 3.1
+//   }
+
+//   println!("{} {}", x.height, x.width);
+//   println!("{}", x.area());
+// }
+
+
+//=---------------------
+
+
+
+// struct Rect<T> {
+//   width: T,
+//   height: T
+// }
+
+// impl Rect<u32> {
+//     fn area(&self) -> u32 {
+//       self.width * self.height
+//     }
+// }
+
+// impl Rect<f32> {
+//     fn area(&self) -> f32 {
+//       self.width * self.height
+//     }
+// }
+ 
+// fn main() {
+//   let x = Rect {
+//     height: 10,
+//     width: 20
+//   };
+//   let x1 = Rect { 
+//     height: 2.4,
+//     width: 3.1
+//   };
+
+//   println!("{} {}", x.height, x.width);
+//   println!("{} {}", x1.height, x1.width);
+
+//   println!("{}", x.area());
+//   println!("{}", x1.area());
+// }
+
+//there is repetition of code to prevent this -> 
+
+//------------------------
+
+
+// struct Rect<T> {
+//   width: T,
+//   height: T
+// }
+
+// impl<T> Rect<T> {
+//     fn area(&self) -> T {
+//       self.width * self.height
+//     }
+// }
+ 
+// fn main() {
+//   let x = Rect {
+//     height: 10,
+//     width: 20
+//   };
+//   let x1 = Rect { 
+//     height: 2.4,
+//     width: 3.1
+//   };
+
+//   println!("{} {}", x.height, x.width);
+//   println!("{} {}", x1.height, x1.width);
+
+//   println!("{}", x.area());
+//   println!("{}", x1.area());
+// }
+
+
+
+//--------------------------
+
+
+
+
+// struct Rect<T, U> {
+//   width: T,
+//   height: U
+// }
+
+// impl Rect<u32, u32> {
+//     fn area(&self) -> u32 {
+//       self.width * self.height
+//     }
+// }
+
+// impl Rect<i32, f64> {
+//     fn area(&self) -> f64 {
+//       self.width as f64 * self.height    }
+// }
+ 
+// fn main() {
+//   let x = Rect {
+//     width: 20,
+//     height: 10.1    
+//   };
+
+//   println!("{}", x.area());
+// }
+
+
+
+//=---------------------------
+
+// #[derive(Copy, Clone)]
+// struct Rect<T> {
+//   width: T,
+//   height: T
+// }
+
+// impl <T: std::ops::Mul<Output = T> + Copy> Rect<T> {
+//     fn area(&self) -> T {
+//       self.width * self.height    }
+// }
+ 
+// fn main() {
+//   let x = Rect {
+//     width: 20.3,
+//     height: 10.4   
+//   };
+
+//   println!("{}", x.area());
+// }
+
+
+
+//-----------------
+
+//Generics over Enum
+
+
+
+
+//----------------------
+
+
+//Traits
+
