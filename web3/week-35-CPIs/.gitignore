@@ -1,0 +1,48 @@
+# === Rust build ===
+/target/
+
+# === Cargo files ===
+**/Cargo.lock
+# Uncomment below if you're publishing a library (but include for apps)
+/Cargo.lock
+
+# === Rust backups and temporary files ===
+**/*.rs.bk
+**/*.swp
+**/*.swo
+**/*~
+
+# === IDEs and Editors ===
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (CLion, IntelliJ, etc.)
+.idea/
+*.iml
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# === OS-specific ===
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Miscellaneous ===
+/node_modules/
+*.log
+*.tmp
+*.bak
+*.old
+*.orig
+
+# === Bun (if you're mixing JS/Rust)
+/bun.lockb
