@@ -26,6 +26,8 @@ test("one transfer", () => {
             programId: contractPubkey
 		}),
 	];
+
+
 	const tx = new Transaction();
 	tx.recentBlockhash = blockhash;
 	tx.add(...ixs);
@@ -35,21 +37,33 @@ test("one transfer", () => {
 	expect(balanceAfter).toBe(svm.minimumBalanceForRentExemption(BigInt(4)));
     
     //
-    const ix2 = new TransactionInstruction({
+	function doubleIt() {
+		const ix2 = new TransactionInstruction({
         keys: [
             {pubkey: dataAccount.publicKey, isSigner: false, isWritable: true},
         ],
         programId: contractPubkey,
         data: Buffer.from(""),
     })
+		const blockhash = svm.latestBlockhash();
+		const tx2 = new Transaction();
+		tx2.recentBlockhash = blockhash;
+		tx2.add(ix2);
+		tx2.sign(payer);
+		svm.sendTransaction(tx2);
+		svm.expireBlockhash();
+	}
 
-    const tx2 = new Transaction();
-	tx2.recentBlockhash = blockhash;
-	tx2.add(ix2);
-	tx2.sign(payer);
-	svm.sendTransaction(tx2);
+	doubleIt();
+	doubleIt();
+	doubleIt();
+	doubleIt(); 
 
     const newDataAcc = svm.getAccount(dataAccount.publicKey);
-    console.log(newDataAcc);
+    
+	expect(newDataAcc?.data[0]).toBe(8);
+	expect(newDataAcc?.data[1]).toBe(0);
+	expect(newDataAcc?.data[2]).toBe(0);
+	expect(newDataAcc?.data[3]).toBe(0);
 
 });
