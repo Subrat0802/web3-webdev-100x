@@ -1,11 +1,18 @@
-use solana_program::{account_info::{next_account_info, AccountInfo},entrypoint, entrypoint::{self, ProgramResult}, program::invoke_signed, pubkey, system_instruction::create_account};
+use solana_program::{
+    account_info::{AccountInfo, next_account_info},
+    entrypoint::ProgramResult,
+    entrypoint,
+    program::invoke_signed,
+    pubkey::Pubkey,
+    system_instruction::create_account,
+};
 
 entrypoint!(process_instruction);
 
 fn process_instruction(
-    program_id: &pubkey,
+    program_id: &Pubkey,
     accounts: &[AccountInfo],
-    instruction_data: &[u8]
+    instruction_data: &[u8],
 ) -> ProgramResult {
     //create a new pda onchain
     //pda userAcc, systemProg
@@ -17,8 +24,14 @@ fn process_instruction(
 
     let seeds = &[user_acc.key.as_ref(), b"user"];
 
-    let ix = create_account(user_acc.key, pda.key, 1000000000, 8, program_id);
+    let ix = create_account(
+         user_acc.key,
+         pda.key, 
+         1000000000, 
+         8, 
+         program_id
+    );
 
-    invoke_signed(&ix, accounts, &[seeds]);
-
+    invoke_signed(&ix, accounts, &[seeds])?;
+    Ok(())
 }

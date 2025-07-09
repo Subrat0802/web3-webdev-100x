@@ -1,6 +1,6 @@
 import { Keypair, Connection, LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
-const connection = new Connection("https://solana-devnet.g.alchemy.com/v2/6-");
+const connection = new Connection("https://solana-devnet.g.alchemy.com/v2/6-6uS3rthnfcl39po9y4d");
 
 async function main() {
   const kp = Keypair.generate();
