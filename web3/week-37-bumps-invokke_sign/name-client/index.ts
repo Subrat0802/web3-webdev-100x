@@ -1,16 +1,14 @@
 import { Keypair, Connection, LAMPORTS_PER_SOL, SystemProgram, Transaction } from "@solana/web3.js";
 
-const connection = new Connection("");
+const connection = new Connection("https://solana-devnet.g.alchemy.com/v2/6-");
 
 async function main() {
   const kp = Keypair.generate();
   const dataAccount = new Keypair();
   try {
-    const sig = await connection.requestAirdrop(kp.publicKey, 0.5 * LAMPORTS_PER_SOL);
+    const sig = await connection.requestAirdrop(kp.publicKey, 0.3 * LAMPORTS_PER_SOL);
 
     await connection.confirmTransaction(sig, "confirmed");
-
-    await new Promise((res) => setTimeout(res, 20000));
 
     const bal = await connection.getBalance(kp.publicKey);
     console.log(`Balance: ${bal} lamports (${bal / LAMPORTS_PER_SOL} SOL)`);
