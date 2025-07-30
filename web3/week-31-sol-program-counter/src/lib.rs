@@ -1,6 +1,6 @@
 use borsh::{BorshDeserialize, BorshSerialize};
 use solana_program::{
-    account_info::{self, AccountInfo, next_account_info},
+    account_info::{self, next_account_info, AccountInfo},
     address_lookup_table::instruction,
     entrypoint::{self, ProgramResult},
     msg,
@@ -29,7 +29,7 @@ pub fn counter_contract(
     let instruction_type = InstructionType::try_from_slice(instruction_data)?;
 
     let acc = next_account_info(&mut accounts.iter())?;
-    let mut counter_data = Counter::try_from_slice(&acc.data.borrow())?;
+    let mut counter_data = Counter::try_from_slice(&acc.data.borrow())?;  //trying to read bytes into the couter variable
     match instruction_type {
         InstructionType::Increment(value) => {
             counter_data.count += value;

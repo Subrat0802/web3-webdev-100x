@@ -1,0 +1,11 @@
+D:\100xDev\web3\week-31-again-counter-progm\target\debug\deps\libcrunchy-1bdf4045ae496583.rmeta: C:\Users\HP\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\src\lib.rs D:\100xDev\web3\week-31-again-counter-progm\target\debug\build\crunchy-c9d25d5d2a3297ca\out\lib.rs
+
+D:\100xDev\web3\week-31-again-counter-progm\target\debug\deps\libcrunchy-1bdf4045ae496583.rlib: C:\Users\HP\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\src\lib.rs D:\100xDev\web3\week-31-again-counter-progm\target\debug\build\crunchy-c9d25d5d2a3297ca\out\lib.rs
+
+D:\100xDev\web3\week-31-again-counter-progm\target\debug\deps\crunchy-1bdf4045ae496583.d: C:\Users\HP\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\src\lib.rs D:\100xDev\web3\week-31-again-counter-progm\target\debug\build\crunchy-c9d25d5d2a3297ca\out\lib.rs
+
+C:\Users\HP\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\crunchy-0.2.4\src\lib.rs:
+D:\100xDev\web3\week-31-again-counter-progm\target\debug\build\crunchy-c9d25d5d2a3297ca\out\lib.rs:
+
+# env-dep:CRUNCHY_LIB_SUFFIX=\\lib.rs
+# env-dep:OUT_DIR=D:\\100xDev\\web3\\week-31-again-counter-progm\\target\\debug\\build\\crunchy-c9d25d5d2a3297ca\\out

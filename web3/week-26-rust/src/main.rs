@@ -258,17 +258,111 @@
 
 
 
-pub fn main() {
-    let x = 10;
-    let is_even = is_even(x);
+// pub fn main() {
+//     let x = 10;
+//     let is_even = is_even(x);
 
-    if is_even {
-        println!("{}", "is even");
-    }else {
-        println!("{}", "is odd");
-    }
+//     if is_even {
+//         println!("{}", "is even");
+//     }else {
+//         println!("{}", "is odd");
+//     }
+// }
+
+// fn is_even(x: i32) -> bool {
+//     return x%2 == 0;
+// }
+
+//--------------
+
+// fn main() {
+//     let x = String::from("subrat");
+//     let len = get_len(x);
+//     println!("{}", len);
+// }   
+
+// fn get_len(x: String) -> usize {
+//     return x.len();
+// }
+
+//f===============
+
+// fn main(){ 
+//     let x = vec![1,2,34,56,7];
+//     let mut y = 0;
+//     for i in x  {
+//         y += i;
+//     }
+
+//     println!("{}", y);
+// }
+
+
+
+//---------------------------------------------------
+
+// fn main() {
+//     let str = String::from("Subrat mishra");
+//     println!("first name is: {}", get_first_name(str));
+// }
+
+// fn get_first_name(str: String) -> String {
+//     let mut first_name = String::from("");
+
+//     for c in str.chars() {
+//         if c == ' ' {
+//             break;
+//         }
+//         first_name.push(c);
+//     }
+
+//     first_name
+// }
+
+
+//----------------
+
+//  fn main() {
+//     let name = String::from("Subrat Mishra");
+//     println!("{}", first_name(name));
+//  }
+
+//  fn first_name(c: String) -> String {
+//     let mut first_n = String::from("");
+
+//     for c in c.chars() {
+//         if c == ' ' {
+//             break;
+//         }
+//         first_n.push(c);
+//     }
+
+//     first_n
+//  }
+
+
+
+//------------------
+
+
+// fn main() {
+//     let mut x = 5;
+//     println!("{}", x);
+
+//     x = 6;
+//     println!("{}", x);
+
+// }
+
+//------------
+
+fn main() {
+    let str = String::from("Harkirat");
+    let len = get_length(&str);
+    println!("{} {}", str, len);
 }
 
-fn is_even(x: i32) -> bool {
-    return x%2 == 0;
+fn get_length(str: &String) -> usize {
+    let len = str.len();
+    return len
 }

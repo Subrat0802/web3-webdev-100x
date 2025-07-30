@@ -31,7 +31,7 @@
 //     // println!("{:?}", serialized_string);
 
 //     match serialized_string {
-//         Ok(str) => println!("{}", str),
+//         Ok(str) => println!("{}", str), //this is will print serialized form to send server
 //         Err(_) => println!("{}", "Err while converting to string")
 //     }
 // }
@@ -55,7 +55,7 @@
 //     };
 
 //     let serialized_string = serde_json::to_string(&u);
-//     let user_string = serialized_string.unwrap();
+//     let user_string = serialized_string.unwrap(); //another way to print unwrap
 
 //     println!("{}", user_string);
 
@@ -65,15 +65,15 @@
 
 //----------------------
 // use serde::{Serialize, Deserialize};
-// #[derive(Serialize, Deserialize, Debug, Clone)]
+// #[derive(Serialize, Deserialize, Debug, Clone)]  //these add functionality to User struct
 // struct User {
 //     username:String,
 //     password:String
-// }
+// } 
 
 // fn main() {
 //     let  s = String::from("{\"username\": \"subrat\", \"password\": \"12345\"}");
-//     let u: Result<User, serde_json::Error> = serde_json::from_str(&s);
+//     let u: Result<User, serde_json::Error> = serde_json::from_str(&s);  //deserialized the data
 
 //     println!("{:?}", u.unwrap());
        
@@ -98,14 +98,14 @@
 
 //---------------------
 
-use serde::{Serialize, Deserialize};
-use serde_json::{self, Value};
+// use serde::{Serialize, Deserialize};
+// use serde_json::{self, Value};
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Person {
-    name: String,
-    age: u32,
-}
+// #[derive(Serialize, Deserialize, Debug)]
+// struct Person {
+//     name: String,
+//     age: u32,
+// }
 
 // fn main() {
 //     let person = Person {

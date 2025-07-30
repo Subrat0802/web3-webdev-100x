@@ -257,7 +257,7 @@
 // fn main(){
 //     let str = String::from("Subrat");
 //     let len = get_length(str);
- 
+
 //     println!("length of str is {len}");
 
 //     get_length(s1);
@@ -555,14 +555,10 @@
 //     println!("{res}");
 // }
 
-
 //------------------------------
 
-
-
-
 //---------------
-// /Error handling 
+// /Error handling
 
 // use std::fs;
 
@@ -575,9 +571,7 @@
 //     }
 // }
 
-
 //----------------
-
 
 // enum Option1 {
 //     Some(u32),
@@ -601,9 +595,6 @@
 
 //---------
 
-
-
-
 // fn main() {
 //     let ans = find_first_a(String::from("subrat"));
 
@@ -626,10 +617,7 @@
 //     None
 // }
 
-
-
 //----------------
-
 
 // fn main() {
 //     let str = String::from("Subrat");
@@ -654,7 +642,6 @@
 //     str.len()
 // }
 
-
 //------------------------------------
 
 // fn main() {
@@ -675,9 +662,7 @@
 //     println!("{}", name2);
 // }
 
-
 //------------------
-
 
 // fn main() {
 //     let str = String::from("subrat mishra");
@@ -687,7 +672,6 @@
 // fn get_len(str: &String) -> usize {
 //     str.len()
 // }
-
 
 //-----------------------
 
@@ -711,7 +695,6 @@
 //     str
 // }
 
-
 //=================
 
 // fn main(){
@@ -721,7 +704,6 @@
 
 //     println!("{} {}", _str2, _str3);
 // }
-
 
 //--------------------
 
@@ -736,8 +718,6 @@
 //     println!("{}", ref1); //this code will run
 // }
 
-
-
 //-----------------
 
 // struct Rect {
@@ -751,7 +731,7 @@
 //     }
 //     fn add(&self) -> f32 {
 //         return self.height + self.width;
-//     } 
+//     }
 // }
 
 // fn main() {
@@ -763,7 +743,6 @@
 //     println!("{} {}", r.width, r.height);
 //     println!("{} {}", r.area(), r.add());
 // }
-
 
 //-------------
 
@@ -809,12 +788,6 @@
 //     println!("{}", new_dir);
 // }
 
-
-
-
-
-
-
 //-again+++++++++++++++############################
 
 //OWNERSHIP
@@ -824,12 +797,11 @@
 //     let len = get_len(str);
 //     println!("{}", len);
 
-//     println!("{}", str) //i can use str now here because ownership goes to get_len fn 
+//     println!("{}", str) //i can not use str now here because ownership goes to get_len fn
 // }
 // fn get_len(str:String) -> usize {
 //     return str.len();
 // }
-
 
 //---------------
 
@@ -839,12 +811,11 @@
 //     let len = get_len(str);
 //     println!("{}", len);
 
-//     // println!("{}", str) //i can use str now here because ownership goes to get_len fn 
+//     // println!("{}", str) //i can use str now here because ownership goes to get_len fn
 // }
 // fn get_len(str:String) -> usize {
 //     return str.len();
 // }
-
 
 //-------------------
 
@@ -859,7 +830,6 @@
 //     return (str.len(), str);
 // }
 
-
 //-----------------------
 //BORROWING
 
@@ -873,14 +843,13 @@
 //     println!("{}", str);
 //     println!("{}", str);
 // }
-// fn get_len(str:&String) -> usize { //now get_len borrow the str not become owner of string 
+// fn get_len(str:&String) -> usize { //now get_len borrow the str not become owner of string
 //     return str.len() ;
 // }
 
-
 //-----------------------
 
-//There can be various immutable referance 
+//There can be various immutable referance
 // //there can br only one mutable referance
 
 // fn main() {
@@ -893,19 +862,14 @@
 
 //----------------------
 
-
-
 // fn main() {
 //     let mut str = String::from("Subrat");
 //     str.push_str("Mishra");
 //     let str1 = &mut str; //add mut here to make mutable variable
-//     str1.push_str("from rewa"); 
+//     str1.push_str("from rewa");
 // }
 
-
 //--------------------
-
-
 
 // fn main() {
 //     let str = String::from("Subrat");
@@ -913,10 +877,9 @@
 //     let str2 = &str;
 //     let str3 = &str;
 //     //HERE I HAVE MULTIPLE IMMUTABLE REFERANCE
-//     println!("{} {} {} {}", str, str1, str2, str3);  
+//     println!("{} {} {} {}", str, str1, str2, str3);
 
 // }
-
 
 //----------------------
 
@@ -926,10 +889,9 @@
 //     let str2 = &str; //this not work
 //     let str3 = &str; //this not work
 //     //HERE I HAVE MULTIPLE IMMUTABLE REFERANCE
-//     println!("{} {} {} {}", str, str1, str2, str3);  
+//     println!("{} {} {} {}", str, str1, str2, str3);
 
 // }
-
 
 //-----------------
 
@@ -939,12 +901,11 @@
 //     let str2 = &str; //this not work
 //     let str3 = &str; //this not work
 
-//     str1.push_str("bhopal"); //onlly this will work 
+//     str1.push_str("bhopal"); //onlly this will work
 
-//     println!("{} {} {} {}", str, str1, str2, str3);  
+//     println!("{} {} {} {}", str, str1, str2, str3);
 
 // }
-
 
 //--------------------
 
@@ -957,11 +918,9 @@
 //     let str2 = &str;
 
 //     println!("{}", str);
-//     println!("{}", str2); 
+//     println!("{}", str2);
 
 // }
-   
-
 
 //----------------------------
 
@@ -974,12 +933,11 @@
 //     let str2 = &str;
 
 //     println!("{}", str);
-//     println!("{}", str2); 
+//     println!("{}", str2);
 
 // }
 
 // /-------------
-
 
 // fn main() {
 //     let mut s1 = String::from("Subrat ");
@@ -992,10 +950,7 @@
 
 //     println!("{}, {}", s3 s4);
 
-
-
 // }
-
 
 //-------------------------
 
@@ -1016,7 +971,6 @@
 // }
 
 //----------------------
-
 
 // struct Rect {
 //     width: f32,
@@ -1044,7 +998,6 @@
 
 //------------------
 
-
 // struct Rect {
 //     width: f32,
 //     heigth: f32
@@ -1070,18 +1023,16 @@
 //     println!("{}", r.area());
 //     println!("{}", r.perimeter());
 //     println!("{}, {}", r.width, r.heigth);
-//     Rect::print_static_fn(); //call the static fn 
+//     Rect::print_static_fn(); //call the static fn
 // }
-
-
 
 //------------------------------
 
-// ENUMS 
+// ENUMS
 
 // enum Direction {
 //     North,
-//     South, 
+//     South,
 //     East,
 //     West
 // }
@@ -1092,22 +1043,20 @@
 //     println!("{}", d); //need to add trait
 // }
 
-
 //----------------
 
 // use std::default;
 
-
 // enum Direction {
 //     North,
-//     South, 
+//     South,
 //     East,
 //     West
 // }
 
 // fn main() {
 //     let dir = Direction::South;
- 
+
 //     steer(dir);
 // }
 
@@ -1118,7 +1067,6 @@
 //         _ => println!("Vertical direction")
 //     }
 // }
-
 
 //--------------------------------
 
@@ -1149,11 +1097,9 @@
 //     };
 // }
 
-
 //------------
 
-
-// //You can also implement fn top of enums    
+// //You can also implement fn top of enums
 // use std::{default, f32::consts::PI};
 // enum Shape {
 //     Square(f32),
@@ -1196,11 +1142,10 @@
 //     }
 // }
 
-
 //--------------
 
 //Option error handling
-//we have created our option enum that is for understanding
+// //we have created our option enum that is for understanding
 // enum Option {
 //     Some(u32),
 //     None
@@ -1213,7 +1158,7 @@
 //         Option::Some(val) => println!("{}", val)
 //     }
 // }
-// fn find_first_a(str: String) -> Option { //if in this string there is no a then it 
+// fn find_first_a(str: String) -> Option { //if in this string there is no a then it
 //     //will return undefined and nul in js but in rust it will return something option of u32
 
 //     return Option::Some(1);
@@ -1221,29 +1166,25 @@
 
 // }
 
-
-
-
 //-----------------------
 
-fn main() {
-    let ans = find_first_a(String::from("subrat"));
+// fn main() {
+//     let ans = find_first_a(String::from("subrat"));
 
-    match ans {
-        Option::None => println!("Value not found"),
-        Option::Some(val) => println!("{}", val)
-    }
-}
-fn find_first_a(str: String) -> Option<u32> { //that is something that rust provides for option error 
-    //this will return either number or none, Option::None, Option::Some
-    let mut index = 0;
-    for c in str.chars() {
-        index = index + 1;
-        if c=='a'{
-            return Some(index);
-        }
-    }
-    None
-}
-
+//     match ans {
+//         Option::None => println!("Value not found"),
+//         Option::Some(val) => println!("{}", val)
+//     }
+// }
+// fn find_first_a(str: String) -> Option<u32> { //that is something that rust provides for option error
+//     //this will return either number or none, Option::None, Option::Some
+//     let mut index = 0;
+//     for c in str.chars() {
+//         index = index + 1;
+//         if c=='a'{
+//             return Some(index);
+//         }
+//     }
+//     None
+// }
 
