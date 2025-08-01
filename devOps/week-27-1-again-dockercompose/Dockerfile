@@ -28,6 +28,5 @@ RUN npm run build
 EXPOSE 3000
 
 # Final startup command
-# ✅ CHANGED: Ensures DB migration is run at container start
-CMD sh -c "sleep 10 && npx prisma migrate dev && npm start"
+CMD ["npm", "run", "dev:docker"]
 

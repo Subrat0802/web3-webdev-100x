@@ -1,25 +1,22 @@
 version: '3.8'
-
 services:
   postgres:
     image: postgres
     ports:
-      - "5432:5432"  # ✅ Expose PostgreSQL port to host
+      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: subrat08  # ✅ Required to initialize database
-
-  user_app:
+      - POSTGRES_PASSWORD=mysecretpassword
+  
+  user_app_again:
     build:
-      context: ./  # ✅ Build context points to current directory
-      dockerfile: Dockerfile  # ✅ Use your custom Dockerfile
-      # ❌ Removed: network: host — Not valid here, and causes issues on Windows/macOS
-
-    depends_on:
-      postgres:
-        condition: service_completed_successfully  # ✅ Wait for Postgres to finish before starting app
-
+      network: host
+      context: ./ 
+      dockerfile: Dockerfile
+    
     environment:
-      DATABASE_URL: postgresql://postgres:subrat08@postgres:5432/postgres  # ✅ Use service name 'postgres' (not localhost)
-
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
+  
     ports:
-      - "3000:3000"  # ✅ Map container port to local machine for browser access
+      - 3000:3000
+    depends_on:
+      - postgres
