@@ -1,18 +1,33 @@
+# Use official Node.js image with Alpine (small size)
 FROM node:20-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy package manifests
 COPY ./package.json ./package.json
 COPY ./package-lock.json ./package-lock.json
 
+# Install dependencies
 RUN npm install
 
+# Copy entire project after installing dependencies (best practice)
 COPY . .
 
-ENV DATABASE_URL = postgresql://postgres:subrat08@localhost:5432/postgres
+# Set environment variable for database connection
+ENV DATABASE_URL=postgresql://postgres:subrat08@postgres:5432/postgres
+# 🟡 CHANGED localhost → postgres (Docker service name!)
 
-RUN npx prisma migrate dev
+# Generate Prisma client
 RUN npx prisma generate
+
+# Build the TypeScript code
 RUN npm run build
 
-CMD ["npm", "start"]
+# Expose the port your app will run on
+EXPOSE 3000
+
+# Final startup command
+# ✅ CHANGED: Ensures DB migration is run at container start
+CMD sh -c "sleep 10 && npx prisma migrate dev && npm start"
+

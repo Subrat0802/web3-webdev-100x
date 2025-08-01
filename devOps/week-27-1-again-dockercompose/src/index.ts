@@ -5,20 +5,29 @@ const app = express();
 const prismaClient = new PrismaClient();
 
 app.get("/", async (req, res) => {
-  const userData = prismaClient.userTest.findMany();
+  try {
+    const userData = await prismaClient.userTest.findMany();
 
-  if(!userData){
-    return res.send({
-        message:"User does not found"
-    })
+    if (!userData || userData.length === 0) {
+      return res.json({
+        message: "No users found",
+        data: []
+      });
+    }
+
+    res.json({
+      message: "Users fetched successfully",
+      data: userData
+    });
+
+  } catch (error) {
+    console.error("Error in GET /:", error);
+    res.status(500).json({
+      message: "Internal Server Error"
+    });
   }
-  res.send(`Hi there get endpoint findmany data:  ${userData}`);
-  
-  res.json({
-    message: "Get endpoint",
-    data: userData
-  });
 });
+
 
 app.post("/signup", async (req, res) => {
   const userData = await prismaClient.userTest.create({
