@@ -1,0 +1,17 @@
+# Ignore node_modules everywhere
+**/node_modules
+**/dist
+**/.next
+
+# Lock files you don't want inside Docker
+bun.lockb
+
+# Git and system files
+.git
+.gitignore
+Dockerfile*
+.dockerignore
+
+# Logs and temp
+*.log
+*.swp
