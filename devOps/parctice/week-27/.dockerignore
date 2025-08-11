@@ -1,0 +1,14 @@
+**/node_modules
+**/dist
+**/.next
+bun.lockb
+.git
+.gitignore
+Dockerfile*
+.dockerignore
+*.log
+*.swp
+**/.env
+coverage
+.temp
+.cache
