@@ -5,18 +5,20 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-  
+      - POSTGRES_PASSWORD=hello08  
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   user_app_again:
     build:
-      network: host
       context: ./ 
       dockerfile: Dockerfile
-    
     environment:
-      - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
-  
+      - DATABASE_URL=postgresql://postgres:hello08@postgres:5432/postgres
     ports:
       - 3000:3000
     depends_on:
       - postgres
+
+volumes:
+  postgres_data:

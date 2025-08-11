@@ -5,28 +5,22 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy package manifests
-COPY ./package.json ./package.json
-COPY ./package-lock.json ./package-lock.json
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy entire project after installing dependencies (best practice)
+# Copy project files after dependencies
 COPY . .
 
-# Set environment variable for database connection
-ENV DATABASE_URL=postgresql://postgres:subrat08@postgres:5432/postgres
-# 🟡 CHANGED localhost → postgres (Docker service name!)
-
-# Generate Prisma client
+# Generate Prisma client (needs DATABASE_URL, will be set by docker-compose at runtime)
 RUN npx prisma generate
 
-# Build the TypeScript code
+# Build TypeScript code
 RUN npm run build
 
-# Expose the port your app will run on
+# Expose the port your app runs on
 EXPOSE 3000
 
-# Final startup command
+# Start the app
 CMD ["npm", "run", "dev:docker"]
-
