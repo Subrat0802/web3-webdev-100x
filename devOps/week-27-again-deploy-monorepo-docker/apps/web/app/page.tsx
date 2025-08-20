@@ -1,13 +1,15 @@
-import { prismaCLient } from "db/client";
+"use client";
 
+import { useEffect, useState } from "react";
 
-const prismaClient = prismaCLient;
+export default function Home() {
+  const [users, setUsers] = useState([]);
 
-export default async function Home() {
-  const user = await prismaClient.user.findMany();
-  return (
-    <div >
-      {JSON.stringify(user)}
-    </div>
-  );
+  useEffect(() => {
+    fetch("/api/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
+
+  return <pre>{JSON.stringify(users, null, 2)}</pre>;
 }

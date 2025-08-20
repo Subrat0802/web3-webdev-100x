@@ -2,30 +2,29 @@ FROM oven/bun:1
 
 WORKDIR /usr/src/app
 
-# Accept build-time variable
-ARG DATABASE_URL
+# Build-time variable for API URL
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
-# Set it as environment variable for build-time scripts
-ENV DATABASE_URL=${DATABASE_URL}
-
-# Install OpenSSL (required by Prisma)
+# Prisma might still need OpenSSL if used in type generation
 RUN apt-get update && apt-get install -y openssl
 
-# Copy files
+# Copy files (Turbo monorepo layout)
 COPY ./packages ./packages
 COPY ./bun.lock ./bun.lock
 COPY ./package.json ./package.json
 COPY ./turbo.json ./turbo.json
 COPY ./apps/web ./apps/web
 
-# Install dependencies and generate Prisma client
+# Install deps (Turbo manages workspaces)
 RUN bun install
-RUN bun run db:generate
 
-# Build the project with DATABASE_URL in env
+# Optional: generate Prisma client if the frontend depends on shared `@db` package
+RUN bun run db:generate || true
+
+# Build the frontend app (Turbo handles `apps/web`)
 RUN bun run build
 
 EXPOSE 3000
 
-# Fix: CMD should be array format (comma-separated)
 CMD ["bun", "run", "start:web"]

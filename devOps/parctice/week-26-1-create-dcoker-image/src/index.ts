@@ -8,8 +8,6 @@ app.get("/", (req, res) => {
 
 app.post("/user", (req, res) => {
     const {username, password} = req.body;
-
-
 })
 
 app.listen(3000);
