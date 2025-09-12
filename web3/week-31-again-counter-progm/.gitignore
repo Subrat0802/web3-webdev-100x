@@ -1,46 +1,28 @@
-# ---- Node.js dependencies ----
-node_modules/
-npm-debug.log
-yarn-error.log
+# Rust target directory
+/target/
 
-# ---- Hardhat / Truffle / Foundry build output ----
-artifacts/
-cache/
-build/
-out/
+# Build artifacts
+**/*.rs.bk
 
-# ---- Foundry specific ----
-lib/
-forge-output/
-forge-cache.json
+# Executables
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
-# ---- Dotenv files ----
-.env
-.env.local
-.env.*.local
-
-# ---- VS Code settings ----
-.vscode/
-
-# ---- OS-specific ----
-.DS_Store
-Thumbs.db
-
-# ---- Logs and temp files ----
+# Test results
 *.log
-*.tmp
-*.temp
 
-# ---- Coverage reports ----
-coverage/
-coverage.json
-lcov-report/
-lcov.info
+# IDE and editor settings
+**/*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
 
-# ---- TypeScript build output ----
-dist/
-tsconfig.tsbuildinfo
+# macOS
+.DS_Store
 
-# ---- Misc ----
-*.sol.json  # output from some solc compilers or tools
-*.tsbuildinfo
+# Windows
+Thumbs.db
