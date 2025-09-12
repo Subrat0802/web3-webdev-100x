@@ -356,13 +356,29 @@
 
 //------------
 
-fn main() {
-    let str = String::from("Harkirat");
-    let len = get_length(&str);
-    println!("{} {}", str, len);
-}
+// fn main() {
+//     let str = String::from("Harkirat");
+//     let len = get_length(&str);
+//     println!("{} {}", str, len);
+// }
 
-fn get_length(str: &String) -> usize {
-    let len = str.len();
-    return len
+// fn get_length(str: &String) -> usize {
+//     let len = str.len();
+//     return len
+// }
+
+
+// fn main(){
+//     let x = String::from("Subrat");
+//     let y = get_len(x);
+//     println!("{}", y);
+// }
+
+// fn get_len(str: String) -> usize{
+//     str.len()
+// }
+
+fn main(){
+    let name = String::from("Subrat Mishra");
+    
 }
