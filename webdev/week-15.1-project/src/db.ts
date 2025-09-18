@@ -11,9 +11,17 @@ const userSchema = new Schema({
     password:String
 });
 
+
+
+
 export const UserModel = model("User", userSchema)
 
 const contentSchema = new Schema({
+
+
+
+
+    
         type:{type:String},
         link:{type:String},
         title:{type:String},
