@@ -1,0 +1,8 @@
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/ppv_lite86-b8bc7b8f3ab638cb.d: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/soft.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/types.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/generic.rs
+
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/libppv_lite86-b8bc7b8f3ab638cb.rmeta: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/soft.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/types.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/generic.rs
+
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/lib.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/soft.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/types.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ppv-lite86-0.2.21/src/generic.rs:

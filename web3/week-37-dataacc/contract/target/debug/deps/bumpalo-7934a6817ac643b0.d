@@ -1,0 +1,9 @@
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/bumpalo-7934a6817ac643b0.d: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/alloc.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/../README.md
+
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/libbumpalo-7934a6817ac643b0.rlib: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/alloc.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/../README.md
+
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/libbumpalo-7934a6817ac643b0.rmeta: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/alloc.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/../README.md
+
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/lib.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/alloc.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bumpalo-3.19.0/src/../README.md:

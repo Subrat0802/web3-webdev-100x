@@ -1,0 +1,8 @@
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/bs58-d1449c07fd569eba.d: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/alphabet.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/decode.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/encode.rs
+
+/Users/subrat.mishra01icloud.com/Desktop/100xdevs/web3-webdev-100x/web3/week-37-dataacc/contract/target/debug/deps/libbs58-d1449c07fd569eba.rmeta: /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/lib.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/alphabet.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/decode.rs /Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/encode.rs
+
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/lib.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/alphabet.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/decode.rs:
+/Users/subrat.mishra01icloud.com/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bs58-0.4.0/src/encode.rs:
