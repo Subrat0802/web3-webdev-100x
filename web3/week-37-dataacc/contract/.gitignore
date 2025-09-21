@@ -1,5 +1,15 @@
-/target/
-cargo.lock
-
+# Rust / Solana
 /target
 **/target
+*.so
+*.dylib
+*.dll
+
+# Anchor framework
+.anchor/
+.deployments/
+
+# IDE & OS junk
+.DS_Store
+.idea/
+.vscode/
